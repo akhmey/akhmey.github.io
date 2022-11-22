@@ -71,7 +71,7 @@ body {
 
 .p-konten {
     margin: auto;
-    width: 500px;
+    width: 33%;
     height: auto;
     background-color: #112730b0;
     margin-top: 10px;
@@ -200,7 +200,7 @@ body {
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
-    width: 450px;
+    width: 33%;
     margin: auto;
     background-color: #112730b0;
     padding: 50px;
@@ -223,7 +223,7 @@ body {
 
 .galery-contain {
     text-align: center;
-    width: 1000px;
+    width: 80%;
     height: auto;
     margin: auto;
     background-color: #112730b0;
