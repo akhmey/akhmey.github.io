@@ -4,33 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jazzlyn Blog</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Marked.js untuk Markdown Parser -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body class="bg-[#0f0e13] text-pink-50 font-sans antialiased min-h-screen flex flex-col selection:bg-pink-500 selection:text-white">
 
-    <!-- Navbar Sakura (Diperbaiki agar rapi di HP) -->
+    <!-- Navbar Sakura -->
     <header class="border-b border-pink-950/60 bg-[#14121a]/90 backdrop-blur sticky top-0 z-40 py-3 px-4 sm:px-6 shadow-lg shadow-pink-950/20">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2 sm:gap-3">
-                <button onclick="toggleMobileSidebar()" class="md:hidden text-pink-400 p-2 rounded-xl bg-pink-950/60 border border-pink-900/50 hover:bg-pink-900/50 transition text-sm">☰</button>
-                <h1 class="font-bold text-base sm:text-lg tracking-wider text-pink-400 flex items-center gap-1.5 sm:gap-2">
-                    <span>🌸</span> <span>Jazzlyn Blog</span>
+            <div class="flex items-center gap-2">
+                <button onclick="toggleMobileSidebar()" class="md:hidden text-pink-400 p-2 rounded-xl bg-pink-950/60 border border-pink-900/50 hover:bg-pink-900/50 transition">☰</button>
+                <h1 class="font-bold text-base sm:text-lg tracking-wider text-pink-400 flex items-center gap-2">
+                    <span>🌸</span> Jazzlyn Blog
                 </h1>
             </div>
             <div class="flex items-center gap-2">
-                <button onclick="setupAdminCredentials()" class="text-[11px] sm:text-xs text-pink-300 hover:text-pink-100 bg-pink-950/60 px-2.5 sm:px-3 py-1.5 rounded-xl border border-pink-900/50 transition">⚙️ Set</button>
-                <button onclick="toggleForm()" class="text-[11px] sm:text-xs bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full transition font-medium shadow-md shadow-pink-900/40 whitespace-nowrap">+ Tulis</button>
+                <button onclick="exportStaticPage()" class="text-xs bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg transition font-medium shadow-md shadow-emerald-900/40" title="Download HTML Siap Push ke GitHub">
+                    📥 Download Blog HTML
+                </button>
+                <button onclick="toggleForm()" class="text-xs bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white px-3 py-1.5 rounded-lg transition font-medium shadow-md shadow-pink-900/40">
+                    + Tulis
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Overlay Hitam saat Sidebar Mobile Terbuka -->
     <div id="sidebarOverlay" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 hidden md:hidden transition-opacity"></div>
 
-    <!-- Mobile Drawer Sidebar (Slide dari Kiri) -->
     <div id="mobileSidebar" class="fixed inset-y-0 left-0 w-72 bg-[#14121a] border-r border-pink-950 p-5 space-y-6 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden overflow-y-auto">
         <div class="flex justify-between items-center pb-3 border-b border-pink-950">
             <h2 class="font-bold text-sm text-pink-400">🌸 Menu & Navigasi</h2>
@@ -39,112 +39,60 @@
         <div id="mobileSidebarContent" class="space-y-6"></div>
     </div>
 
-    <!-- Layout Utama: Konten & Sidebar Desktop -->
-    <div class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8 flex-grow grid grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8">
-        
-        <!-- Main Content Area (Span 3) -->
+    <div class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8 flex-grow grid grid-cols-1 md:grid-cols-4 gap-8">
         <main class="md:col-span-3 space-y-6">
             
-            <!-- Form Tulis / Edit Artikel -->
-            <div id="postForm" class="hidden mb-8 bg-[#16141f] border border-pink-950/80 p-5 sm:p-6 rounded-2xl space-y-4 shadow-2xl">
+            <div id="postForm" class="hidden mb-8 bg-[#16141f] border border-pink-950/80 p-6 rounded-2xl space-y-4 shadow-2xl">
                 <h2 class="font-bold text-sm text-pink-400 uppercase tracking-widest flex items-center gap-2">
-                    <span>✨</span> Buat Postingan Baru (Cloud Sync)
+                    <span>✨</span> Buat Postingan Baru
                 </h2>
-                
                 <input type="text" id="postTitle" placeholder="Judul artikel..." class="w-full bg-[#0f0e13] border border-pink-950 rounded-xl px-4 py-3 text-sm text-pink-100 focus:outline-none focus:border-pink-500 placeholder:text-pink-900/60">
-                
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <input type="text" id="postCategory" placeholder="Kategori (Misal: Coding, Musik)" class="w-full bg-[#0f0e13] border border-pink-950 rounded-xl px-4 py-2 text-xs text-pink-100 focus:outline-none focus:border-pink-500 placeholder:text-pink-900/60">
-                    <input type="text" id="postMedia" placeholder="URL Gambar / Video / Audio" class="w-full bg-[#0f0e13] border border-pink-950 rounded-xl px-4 py-2 text-xs text-pink-200 focus:outline-none focus:border-pink-500 placeholder:text-pink-900/60">
+                    <input type="text" id="postMedia" placeholder="URL Gambar / Video / Audio (Opsional)" class="w-full bg-[#0f0e13] border border-pink-950 rounded-xl px-4 py-2 text-xs text-pink-200 focus:outline-none focus:border-pink-500 placeholder:text-pink-900/60">
                 </div>
-
                 <textarea id="postContent" rows="7" placeholder="Tulis isi artikel... (Support **Markdown**)" class="w-full bg-[#0f0e13] border border-pink-950 rounded-xl px-4 py-3 text-sm text-pink-100 focus:outline-none focus:border-pink-500 font-mono placeholder:text-pink-900/60"></textarea>
-
                 <div class="flex justify-end space-x-3 pt-2">
                     <button onclick="toggleForm()" class="px-4 py-2 text-xs text-pink-400 hover:text-pink-200">Batal</button>
-                    <button onclick="savePostToCloud()" class="px-5 py-2 bg-pink-600 hover:bg-pink-500 text-white rounded-xl text-xs font-semibold shadow-md shadow-pink-900/40">Publish ke GitHub</button>
+                    <button onclick="addPost()" class="px-5 py-2 bg-pink-600 hover:bg-pink-500 text-white rounded-xl text-xs font-semibold shadow-md shadow-pink-900/40">Tambah ke Draft</button>
                 </div>
             </div>
 
-            <!-- Header Info Filter Aktif -->
             <div id="filterInfo" class="hidden justify-between items-center bg-pink-950/20 border border-pink-900/40 px-4 py-2 rounded-xl text-xs text-pink-300">
                 <span id="filterText">Menampilkan hasil pencarian</span>
                 <button onclick="clearFilter()" class="text-pink-400 font-bold hover:underline">Reset Filter ✕</button>
             </div>
 
-            <!-- Loading Indicator -->
-            <div id="loadingStatus" class="text-center py-10 text-pink-400/60 text-sm">
-                Memuat artikel dari GitHub... 🌸
-            </div>
-
-            <!-- Daftar Artikel -->
-            <section id="articleList" class="space-y-6">
-                <!-- Dirender otomatis oleh JavaScript -->
-            </section>
-
+            <section id="articleList" class="space-y-6"></section>
         </main>
 
-        <!-- Sidebar Desktop (Span 1) -->
-        <aside id="desktopSidebar" class="hidden md:block space-y-6">
-            <!-- Di-render otomatis via JS -->
-        </aside>
-
+        <aside id="desktopSidebar" class="hidden md:block space-y-6"></aside>
     </div>
 
-    <!-- Footer -->
     <footer class="border-t border-pink-950/40 py-6 text-center text-xs text-pink-400/40 mt-auto">
-        <p>&copy; 2026 • Jazzlyn Blog • GitHub API Cloud Edition</p>
+        <p>&copy; 2026 • Jazzlyn Blog • Static Edition</p>
     </footer>
 
-    <!-- Script Utama -->
     <script>
-        let GITHUB_USER = "jazzlyn";
-        let GITHUB_REPO = "blog";
-        const GITHUB_BRANCH = "main";
-
-        const hostname = window.location.hostname;
-        if (hostname.includes(".github.io")) {
-            const parts = hostname.split(".")[0];
-            GITHUB_USER = parts;
-            const pathSegments = window.location.pathname.split("/").filter(Boolean);
-            if (pathSegments.length > 0) {
-                GITHUB_REPO = pathSegments[0];
+        // TEMPAT DAFTAR ARTIKEL LU (Otomatis tersimpan di browser & ikut ke-download pas klik Download Blog HTML)
+        let posts = JSON.parse(localStorage.getItem('jazzlyn_static_posts')) || [
+            {
+                id: 1,
+                title: "Selamat Datang di Jazzlyn Blog!",
+                category: "Pengumuman",
+                content: "Ini adalah postingan pertamaku. Klik tombol **+ Tulis** di atas untuk membuat artikel baru, lalu klik **📥 Download Blog HTML** untuk menyimpan file web siap-push ke GitHub!",
+                media: "",
+                date: "9 Agustus 2026"
             }
-        }
+        ];
 
-        let posts = [];
         let activeFilter = null;
         let searchQuery = "";
-        let fileSha = "";
-
-        async function fetchPostsFromGitHub() {
-            try {
-                const response = await fetch(`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/posts.json?t=${Date.now()}`);
-                if (response.ok) {
-                    posts = await response.json();
-                } else {
-                    posts = [
-                        {
-                            id: 1,
-                            title: "Selamat Datang di Jazzlyn Blog Cloud!",
-                            category: "Update",
-                            content: "Blog ini terhubung langsung ke GitHub lewat API. Klik tombol **⚙️ Set** di atas untuk mulai menghubungkan token GitHub kamu!",
-                            media: "",
-                            date: "9 Agustus 2026"
-                        }
-                    ];
-                }
-            } catch (err) {
-                posts = JSON.parse(localStorage.getItem('jazzlyn_backup_posts')) || [];
-            }
-            
-            document.getElementById('loadingStatus').style.display = 'none';
-            renderBlog();
-        }
 
         function renderBlog() {
             renderPosts();
             renderSidebarWidgets();
+            localStorage.setItem('jazzlyn_static_posts', JSON.stringify(posts));
         }
 
         function renderPosts() {
@@ -168,13 +116,12 @@
             }
 
             if(filtered.length === 0) {
-                container.innerHTML = `<div class="bg-[#14121a]/60 border border-pink-950/50 p-8 rounded-2xl text-center text-pink-400/60 text-sm">Tidak ada artikel yang ditemukan.</div>`;
+                container.innerHTML = `<div class="bg-[#14121a]/60 border border-pink-950/50 p-8 rounded-2xl text-center text-pink-400/60 text-sm">Belum ada artikel. Yuk buat postingan pertama!</div>`;
                 return;
             }
 
             filtered.forEach((post) => {
                 const parsedContent = marked.parse(post.content);
-                
                 let mediaHtml = '';
                 if(post.media) {
                     if(post.media.match(/\.(mp4|webm|ogg)$/i)) {
@@ -196,7 +143,7 @@
                         <div class="text-pink-200/80 text-sm leading-relaxed space-y-2">${parsedContent}</div>
                         ${mediaHtml}
                         <div class="pt-2 border-t border-pink-950/40 flex justify-end">
-                            <button onclick="deletePostFromCloud(${post.id})" class="text-xs text-rose-400 hover:text-rose-300">Hapus Artikel</button>
+                            <button onclick="deletePost(${post.id})" class="text-xs text-rose-400 hover:text-rose-300">Hapus Artikel</button>
                         </div>
                     </article>
                 `;
@@ -216,33 +163,26 @@
             });
 
             return `
-                <!-- Widget: Pencarian -->
                 <div class="bg-[#14121a]/80 border border-pink-950/60 p-5 rounded-2xl shadow-lg space-y-3">
                     <h3 class="text-xs font-bold uppercase tracking-wider text-pink-400">🔍 Cari Artikel</h3>
                     <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Ketik kata kunci..." class="w-full bg-[#0f0e13] border border-pink-950 rounded-xl px-3 py-2 text-xs text-pink-100 focus:outline-none focus:border-pink-500 placeholder:text-pink-900/60">
                 </div>
-
-                <!-- Widget: Profil Penulis -->
                 <div class="bg-[#14121a]/80 border border-pink-950/60 p-5 rounded-2xl shadow-lg space-y-3 text-center">
                     <div class="w-16 h-16 bg-gradient-to-tr from-pink-600 to-rose-500 rounded-full mx-auto flex items-center text-2xl shadow-lg justify-center">🌸</div>
                     <h3 class="font-bold text-sm text-pink-200">Jazzlyn / Wota Dev</h3>
-                    <p class="text-xs text-pink-400/70 leading-relaxed">Tempat menuangkan catatan harian, eksperimen kode, dan hal-hal seru lainnya.</p>
+                    <p class="text-xs text-pink-400/70 leading-relaxed">Catatan harian & eksperimen web.</p>
                     <div class="pt-2 border-t border-pink-950/60 flex justify-around text-xs text-pink-400">
-                        <div><span id="statTotal" class="block font-bold text-pink-200 text-sm">${posts.length}</span>Post</div>
-                        <div><span id="statTags" class="block font-bold text-pink-200 text-sm">${categories.length}</span>Kategori</div>
+                        <div><span class="block font-bold text-pink-200 text-sm">${posts.length}</span>Post</div>
+                        <div><span class="block font-bold text-pink-200 text-sm">${categories.length}</span>Kategori</div>
                     </div>
                 </div>
-
-                <!-- Widget: Kategori / Tags -->
                 <div class="bg-[#14121a]/80 border border-pink-950/60 p-5 rounded-2xl shadow-lg space-y-3">
                     <h3 class="text-xs font-bold uppercase tracking-wider text-pink-400">📂 Kategori</h3>
                     <div class="flex flex-wrap gap-2">${catButtons}</div>
                 </div>
-
-                <!-- Widget: Artikel Terbaru -->
                 <div class="bg-[#14121a]/80 border border-pink-950/60 p-5 rounded-2xl shadow-lg space-y-3">
                     <h3 class="text-xs font-bold uppercase tracking-wider text-pink-400">⚡ Postingan Terbaru</h3>
-                    <div class="space-y-2 text-xs">${recentList}</div>
+                    <div class="space-y-2 text-xs">${recentList || '<span class="text-pink-400/40">Belum ada post</span>'}</div>
                 </div>
             `;
         }
@@ -250,104 +190,22 @@
         function renderSidebarWidgets() {
             const desktopSide = document.getElementById('desktopSidebar');
             if(desktopSide) desktopSide.innerHTML = getSidebarHTML();
-
             const mobileSide = document.getElementById('mobileSidebarContent');
             if(mobileSide) mobileSide.innerHTML = getSidebarHTML();
         }
 
-        function setupAdminCredentials() {
-            const token = prompt("Masukkan GitHub Personal Access Token (PAT):", localStorage.getItem('gh_token') || '');
-            if (token !== null) localStorage.setItem('gh_token', token.trim());
-
-            const passcode = prompt("Masukkan Passcode Admin rahasia:", localStorage.getItem('admin_pass') || 'jazzlyn123');
-            if (passcode !== null) localStorage.setItem('admin_pass', passcode.trim());
-
-            alert("✅ Kredensial Admin tersimpan!");
-        }
-
-        function verifyAdmin() {
-            const savedPass = localStorage.getItem('admin_pass') || 'jazzlyn123';
-            const savedToken = localStorage.getItem('gh_token');
-
-            if (!savedToken) {
-                alert("⚠️ Token GitHub belum disetting! Klik tombol '⚙️ Set' di atas.");
-                setupAdminCredentials();
-                return false;
-            }
-
-            const passcode = prompt("🔒 Masukkan Passcode Admin:");
-            if (passcode === null) return false;
-
-            if (passcode.trim() === savedPass) {
-                return true;
-            } else {
-                alert("❌ Passcode salah!");
-                return false;
-            }
-        }
-
         function toggleForm() {
-            if (!verifyAdmin()) return;
-            const form = document.getElementById('postForm');
-            form.classList.toggle('hidden');
+            document.getElementById('postForm').classList.toggle('hidden');
         }
 
         function toggleMobileSidebar() {
             const sidebar = document.getElementById('mobileSidebar');
             const overlay = document.getElementById('sidebarOverlay');
-            
-            if (sidebar.classList.contains('-translate-x-full')) {
-                sidebar.classList.remove('-translate-x-full');
-                overlay.classList.remove('hidden');
-            } else {
-                sidebar.classList.add('-translate-x-full');
-                overlay.classList.add('hidden');
-            }
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
         }
 
-        async function commitPostsToGitHub(updatedPosts, actionDescription) {
-            const token = localStorage.getItem('gh_token');
-            const apiUri = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/posts.json`;
-
-            try {
-                const getRes = await fetch(apiUri, {
-                    headers: { 'Authorization': `token ${token}` }
-                });
-                if (getRes.ok) {
-                    const fileData = await getRes.json();
-                    fileSha = fileData.sha;
-                }
-            } catch (e) {
-                fileSha = "";
-            }
-
-            const jsonString = JSON.stringify(updatedPosts, null, 2);
-            const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
-
-            const putRes = await fetch(apiUri, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `token ${token}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    message: actionDescription,
-                    content: contentBase64,
-                    sha: fileSha || undefined,
-                    branch: GITHUB_BRANCH
-                })
-            });
-
-            if (putRes.ok) {
-                return true;
-            } else {
-                const errJson = await putRes.json();
-                alert("Gagal sinkron ke GitHub: " + errJson.message);
-                return false;
-            }
-        }
-
-        async function savePostToCloud() {
+        function addPost() {
             const title = document.getElementById('postTitle').value.trim();
             const category = document.getElementById('postCategory').value.trim() || 'Umum';
             const content = document.getElementById('postContent').value.trim();
@@ -361,51 +219,51 @@
             const options = { day: 'numeric', month: 'long', year: 'numeric' };
             const date = new Date().toLocaleDateString('id-ID', options);
 
-            const newPost = {
-                id: Date.now(),
-                title,
-                category,
-                content,
-                media,
-                date
-            };
-
-            let updatedPosts = [newPost, ...posts];
+            const newPost = { id: Date.now(), title, category, content, media, date };
+            posts.unshift(newPost);
             
-            const success = await commitPostsToGitHub(updatedPosts, `Add post: ${title}`);
-            if (success) {
-                posts = updatedPosts;
-                localStorage.setItem('jazzlyn_backup_posts', JSON.parse(JSON.stringify(posts)));
-                document.getElementById('postTitle').value = '';
-                document.getElementById('postCategory').value = '';
-                document.getElementById('postContent').value = '';
-                document.getElementById('postMedia').value = '';
-                toggleForm();
+            document.getElementById('postTitle').value = '';
+            document.getElementById('postCategory').value = '';
+            document.getElementById('postContent').value = '';
+            document.getElementById('postMedia').value = '';
+            toggleForm();
+            renderBlog();
+            alert("✨ Artikel berhasil ditambahkan! Jangan lupa klik 'Download Blog HTML' untuk update file web-nya.");
+        }
+
+        function deletePost(id) {
+            if(confirm('Yakin ingin menghapus artikel ini?')) {
+                posts = posts.filter(p => p.id !== id);
                 renderBlog();
-                alert("✨ Artikel berhasil dipublish ke GitHub Pages!");
+                alert("🗑️ Artikel dihapus! Jangan lupa download ulang file HTML-nya.");
             }
         }
 
-        async function deletePostFromCloud(id) {
-            if (!verifyAdmin()) return;
+        // FUNGSI UTAMA: MEMBUAT FILE HTML STATIS SIAP PUSH
+        function exportStaticPage() {
+            // Sembunyikan form/elemen admin sementara sebelum dibungkus
+            const clonedPostsData = JSON.stringify(posts);
+            
+            // Ambil seluruh struktur HTML halaman ini secara utuh
+            let htmlContent = document.documentElement.outerHTML;
+            
+            // Masukkan data post terbaru ke dalam variabel statis di dalam file HTML yang di-download
+            htmlContent = htmlContent.replace(/let posts = JSON\.parse\(localStorage\.getItem\('jazzlyn_static_posts'\)\) \|\| \[[\s\S]*?\];/, `let posts = ${clonedPostsData};`);
 
-            if(confirm('Yakin ingin menghapus artikel ini dari GitHub?')) {
-                let updatedPosts = posts.filter(p => p.id !== id);
-                
-                const success = await commitPostsToGitHub(updatedPosts, `Delete post ID: ${id}`);
-                if (success) {
-                    posts = updatedPosts;
-                    localStorage.setItem('jazzlyn_backup_posts', JSON.stringify(posts));
-                    renderBlog();
-                    alert("🗑️ Artikel berhasil dihapus dari GitHub!");
-                }
-            }
+            const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'index.html';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            
+            alert("📥 File 'index.html' berhasil di-download! Pindahkan file ini ke folder repo Termux lu, lalu `git push`!");
         }
 
         function handleSearch() {
-            searchQuery = document.getElementById('searchInput').value;
-            const searchInputs = document.querySelectorAll('#searchInput');
-            searchInputs.forEach(input => input.value = searchQuery);
+            searchQuery = document.getElementById('searchInput').value || '';
             renderPosts();
         }
 
@@ -421,15 +279,11 @@
             renderPosts();
         }
 
-        function resetData() {
-            alert("Fitur Reset dinonaktifkan di mode Cloud GitHub API.");
-        }
-
         function scrollToTop() {
-            window.scrollTo({ top: 0, header: 'smooth' });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        fetchPostsFromGitHub();
+        renderBlog();
     </script>
 </body>
 </html>
