@@ -9,20 +9,20 @@
 </head>
 <body class="bg-[#0f0e13] text-pink-50 font-sans antialiased min-h-screen flex flex-col selection:bg-pink-500 selection:text-white">
 
-    <!-- Navbar Sakura -->
+    <!-- Navbar Sakura Minimalis & Rapi -->
     <header class="border-b border-pink-950/60 bg-[#14121a]/90 backdrop-blur sticky top-0 z-40 py-3 px-4 sm:px-6 shadow-lg shadow-pink-950/20">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <button onclick="toggleMobileSidebar()" class="md:hidden text-pink-400 p-2 rounded-xl bg-pink-950/60 border border-pink-900/50 hover:bg-pink-900/50 transition">☰</button>
+            <div class="flex items-center gap-3">
+                <button onclick="toggleMobileSidebar()" class="md:hidden text-pink-400 p-2 rounded-xl bg-pink-950/60 border border-pink-900/50 hover:bg-pink-900/50 transition text-sm">☰</button>
                 <h1 class="font-bold text-base sm:text-lg tracking-wider text-pink-400 flex items-center gap-2">
                     <span>🌸</span> Jazzlyn Blog
                 </h1>
             </div>
             <div class="flex items-center gap-2">
-                <button onclick="exportStaticPage()" class="text-xs bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg transition font-medium shadow-md shadow-emerald-900/40" title="Download HTML Siap Push ke GitHub">
-                    📥 Download Blog HTML
+                <button onclick="exportStaticPage()" class="text-xs text-emerald-300 bg-emerald-950/60 px-3 py-2 rounded-xl border border-emerald-900/50 hover:bg-emerald-900/50 transition font-medium flex items-center gap-1.5 shadow-md">
+                    <span>📥</span> <span class="hidden sm:inline">Download HTML</span>
                 </button>
-                <button onclick="toggleForm()" class="text-xs bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white px-3 py-1.5 rounded-lg transition font-medium shadow-md shadow-pink-900/40">
+                <button onclick="toggleForm()" class="text-xs bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white px-4 py-2 rounded-xl transition font-semibold shadow-md shadow-pink-900/40">
                     + Tulis
                 </button>
             </div>
@@ -47,11 +47,28 @@
                     <span>✨</span> Buat Postingan Baru
                 </h2>
                 <input type="text" id="postTitle" placeholder="Judul artikel..." class="w-full bg-[#0f0e13] border border-pink-950 rounded-xl px-4 py-3 text-sm text-pink-100 focus:outline-none focus:border-pink-500 placeholder:text-pink-900/60">
+                
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <input type="text" id="postCategory" placeholder="Kategori (Misal: Coding, Musik)" class="w-full bg-[#0f0e13] border border-pink-950 rounded-xl px-4 py-2 text-xs text-pink-100 focus:outline-none focus:border-pink-500 placeholder:text-pink-900/60">
-                    <input type="text" id="postMedia" placeholder="URL Gambar / Video / Audio (Opsional)" class="w-full bg-[#0f0e13] border border-pink-950 rounded-xl px-4 py-2 text-xs text-pink-200 focus:outline-none focus:border-pink-500 placeholder:text-pink-900/60">
+                    
+                    <!-- UPLOAD GAMBAR DARI HP -->
+                    <div class="flex items-center gap-2 bg-[#0f0e13] border border-pink-950 rounded-xl px-3 py-1.5">
+                        <label class="cursor-pointer text-xs bg-pink-950/80 text-pink-300 hover:bg-pink-900 px-3 py-1.5 rounded-lg border border-pink-800/50 transition font-medium w-full text-center">
+                            🖼️ Pilih Gambar dari HP
+                            <input type="file" id="imageInput" accept="image/*" onchange="handleImageUpload(event)" class="hidden">
+                        </label>
+                    </div>
                 </div>
+
+                <!-- Preview Gambar Terpilih -->
+                <div id="imagePreviewContainer" class="hidden relative">
+                    <img id="imagePreview" src="" alt="Preview" class="w-full max-h-48 object-cover rounded-xl border border-pink-900/50">
+                    <button onclick="clearImage()" class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-lg hover:bg-rose-600 transition">Hapus Gambar</button>
+                </div>
+                <input type="hidden" id="postMedia" value="">
+
                 <textarea id="postContent" rows="7" placeholder="Tulis isi artikel... (Support **Markdown**)" class="w-full bg-[#0f0e13] border border-pink-950 rounded-xl px-4 py-3 text-sm text-pink-100 focus:outline-none focus:border-pink-500 font-mono placeholder:text-pink-900/60"></textarea>
+                
                 <div class="flex justify-end space-x-3 pt-2">
                     <button onclick="toggleForm()" class="px-4 py-2 text-xs text-pink-400 hover:text-pink-200">Batal</button>
                     <button onclick="addPost()" class="px-5 py-2 bg-pink-600 hover:bg-pink-500 text-white rounded-xl text-xs font-semibold shadow-md shadow-pink-900/40">Tambah ke Draft</button>
@@ -74,13 +91,12 @@
     </footer>
 
     <script>
-        // TEMPAT DAFTAR ARTIKEL LU (Otomatis tersimpan di browser & ikut ke-download pas klik Download Blog HTML)
         let posts = JSON.parse(localStorage.getItem('jazzlyn_static_posts')) || [
             {
                 id: 1,
                 title: "Selamat Datang di Jazzlyn Blog!",
                 category: "Pengumuman",
-                content: "Ini adalah postingan pertamaku. Klik tombol **+ Tulis** di atas untuk membuat artikel baru, lalu klik **📥 Download Blog HTML** untuk menyimpan file web siap-push ke GitHub!",
+                content: "Ini adalah postingan pertamaku. Sekarang kamu bisa upload gambar langsung dari galeri HP! Coba klik tombol **+ Tulis** di atas.",
                 media: "",
                 date: "9 Agustus 2026"
             }
@@ -88,6 +104,30 @@
 
         let activeFilter = null;
         let searchQuery = "";
+        let uploadedImageBase64 = "";
+
+        // Fungsi handle upload gambar dari HP
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImageBase64 = e.target.result;
+                    document.getElementById('postMedia').value = uploadedImageBase64;
+                    document.getElementById('imagePreview').src = uploadedImageBase64;
+                    document.getElementById('imagePreviewContainer').classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function clearImage() {
+            uploadedImageBase64 = "";
+            document.getElementById('postMedia').value = "";
+            document.getElementById('imagePreview').src = "";
+            document.getElementById('imagePreviewContainer').classList.add('hidden');
+            document.getElementById('imageInput').value = "";
+        }
 
         function renderBlog() {
             renderPosts();
@@ -124,13 +164,7 @@
                 const parsedContent = marked.parse(post.content);
                 let mediaHtml = '';
                 if(post.media) {
-                    if(post.media.match(/\.(mp4|webm|ogg)$/i)) {
-                        mediaHtml = `<video controls class="w-full rounded-xl mt-4 max-h-96 object-cover border border-pink-950"><source src="${post.media}" type="video/mp4"></video>`;
-                    } else if(post.media.match(/\.(mp3|wav|ogg)$/i)) {
-                        mediaHtml = `<audio controls class="w-full mt-4"><source src="${post.media}"></audio>`;
-                    } else {
-                        mediaHtml = `<img src="${post.media}" alt="Media Post" class="w-full rounded-xl mt-4 max-h-96 object-cover border border-pink-950/60 shadow-lg">`;
-                    }
+                    mediaHtml = `<img src="${post.media}" alt="Media Post" class="w-full rounded-xl mt-4 max-h-96 object-cover border border-pink-950/60 shadow-lg">`;
                 }
 
                 container.innerHTML += `
@@ -225,10 +259,10 @@
             document.getElementById('postTitle').value = '';
             document.getElementById('postCategory').value = '';
             document.getElementById('postContent').value = '';
-            document.getElementById('postMedia').value = '';
+            clearImage();
             toggleForm();
             renderBlog();
-            alert("✨ Artikel berhasil ditambahkan! Jangan lupa klik 'Download Blog HTML' untuk update file web-nya.");
+            alert("✨ Artikel berhasil ditambahkan! Jangan lupa klik 'Download HTML' di atas untuk update file web-nya.");
         }
 
         function deletePost(id) {
@@ -239,15 +273,9 @@
             }
         }
 
-        // FUNGSI UTAMA: MEMBUAT FILE HTML STATIS SIAP PUSH
         function exportStaticPage() {
-            // Sembunyikan form/elemen admin sementara sebelum dibungkus
             const clonedPostsData = JSON.stringify(posts);
-            
-            // Ambil seluruh struktur HTML halaman ini secara utuh
             let htmlContent = document.documentElement.outerHTML;
-            
-            // Masukkan data post terbaru ke dalam variabel statis di dalam file HTML yang di-download
             htmlContent = htmlContent.replace(/let posts = JSON\.parse\(localStorage\.getItem\('jazzlyn_static_posts'\)\) \|\| \[[\s\S]*?\];/, `let posts = ${clonedPostsData};`);
 
             const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
@@ -259,7 +287,7 @@
             a.click();
             a.remove();
             
-            alert("📥 File 'index.html' berhasil di-download! Pindahkan file ini ke folder repo Termux lu, lalu `git push`!");
+            alert("📥 File 'index.html' berhasil di-download! Timpa file ini ke folder repo Termux lu, lalu `git push`!");
         }
 
         function handleSearch() {
