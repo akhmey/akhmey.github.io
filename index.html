@@ -6,97 +6,115 @@
     <title>Jazzlyn Blog</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* Material You Theme Tokens */
+        :root {
+            --md-sys-color-background: #121316;
+            --md-sys-color-surface: #1a1b20;
+            --md-sys-color-surface-container: #23242a;
+            --md-sys-color-primary: #d0bcff;
+            --md-sys-color-on-primary: #381e72;
+            --md-sys-color-primary-container: #4f378b;
+            --md-sys-color-on-primary-container: #eaddff;
+            --md-sys-color-outline: #8e9099;
+        }
+        body { background-color: var(--md-sys-color-background); color: #e3e2e6; }
+    </style>
 </head>
-<body class="bg-[#0f0e13] text-pink-50 font-sans antialiased min-h-screen flex flex-col selection:bg-pink-500 selection:text-white">
+<body class="min-h-screen flex flex-col antialiased selection:bg-[#4f378b] selection:text-[#eaddff]">
 
-    <!-- Navbar Sakura Minimalis & Rapi -->
-    <header class="border-b border-pink-950/60 bg-[#14121a]/90 backdrop-blur sticky top-0 z-40 py-3 px-4 sm:px-6 shadow-lg shadow-pink-950/20">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
+    <!-- Material You Top App Bar -->
+    <header class="sticky top-0 z-40 bg-[var(--md-sys-color-surface)]/90 backdrop-blur-md border-b border-white/5 py-3.5 px-4 sm:px-6 shadow-sm">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <button onclick="toggleMobileSidebar()" class="md:hidden text-pink-400 p-2 rounded-xl bg-pink-950/60 border border-pink-900/50 hover:bg-pink-900/50 transition text-sm">☰</button>
-                <h1 class="font-bold text-base sm:text-lg tracking-wider text-pink-400 flex items-center gap-2">
-                    <span>🌸</span> Jazzlyn Blog
+                <button onclick="toggleMobileSidebar()" class="md:hidden text-[#d0bcff] p-2 rounded-full bg-[var(--md-sys-color-surface-container)] hover:bg-white/10 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <h1 class="font-bold text-base tracking-wide text-[#e3e2e6] flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-full bg-[#4f378b] flex items-center justify-center text-sm shadow-inner">🌸</span> Jazzlyn Blog
                 </h1>
             </div>
             <div class="flex items-center gap-2">
-                <button onclick="exportStaticPage()" class="text-xs text-emerald-300 bg-emerald-950/60 px-3 py-2 rounded-xl border border-emerald-900/50 hover:bg-emerald-900/50 transition font-medium flex items-center gap-1.5 shadow-md">
+                <button onclick="exportStaticPage()" class="text-xs bg-[#23242a] hover:bg-white/10 text-[#d0bcff] px-3.5 py-2 rounded-full border border-white/10 transition font-medium flex items-center gap-1.5 shadow-sm">
                     <span>📥</span> <span class="hidden sm:inline">Download HTML</span>
                 </button>
-                <button onclick="toggleForm()" class="text-xs bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white px-4 py-2 rounded-xl transition font-semibold shadow-md shadow-pink-900/40">
-                    + Tulis
+                <button onclick="toggleForm()" class="text-xs bg-[var(--md-sys-color-primary)] text-[var(--md-sys-color-on-primary)] hover:opacity-90 px-4 py-2 rounded-full transition font-semibold shadow-md flex items-center gap-1">
+                    <span>➕</span> Tulis
                 </button>
             </div>
         </div>
     </header>
 
-    <div id="sidebarOverlay" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 hidden md:hidden transition-opacity"></div>
+    <div id="sidebarOverlay" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden md:hidden transition-opacity"></div>
 
-    <div id="mobileSidebar" class="fixed inset-y-0 left-0 w-72 bg-[#14121a] border-r border-pink-950 p-5 space-y-6 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden overflow-y-auto">
-        <div class="flex justify-between items-center pb-3 border-b border-pink-950">
-            <h2 class="font-bold text-sm text-pink-400">🌸 Menu & Navigasi</h2>
-            <button onclick="toggleMobileSidebar()" class="text-pink-400 hover:text-white text-lg font-bold p-1">✕</button>
+    <!-- Material You Navigation Drawer (Mobile) -->
+    <div id="mobileSidebar" class="fixed inset-y-0 left-0 w-80 bg-[var(--md-sys-color-surface)] border-r border-white/10 p-6 space-y-6 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden overflow-y-auto shadow-2xl">
+        <div class="flex justify-between items-center pb-2 border-b border-white/10">
+            <h2 class="font-bold text-sm text-[#d0bcff]">🌸 Menu Navigasi</h2>
+            <button onclick="toggleMobileSidebar()" class="text-white/70 hover:text-white p-1.5 rounded-full hover:bg-white/10">✕</button>
         </div>
         <div id="mobileSidebarContent" class="space-y-6"></div>
     </div>
 
-    <div class="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8 flex-grow grid grid-cols-1 md:grid-cols-4 gap-8">
-        <main class="md:col-span-3 space-y-6">
+    <!-- Main Content Grid -->
+    <div class="max-w-5xl mx-auto w-full px-4 sm:px-6 py-8 flex-grow grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Articles Feed -->
+        <main class="md:col-span-2 space-y-6">
             
-            <div id="postForm" class="hidden mb-8 bg-[#16141f] border border-pink-950/80 p-6 rounded-2xl space-y-4 shadow-2xl">
-                <h2 class="font-bold text-sm text-pink-400 uppercase tracking-widest flex items-center gap-2">
+            <!-- Material You Form Card -->
+            <div id="postForm" class="hidden bg-[var(--md-sys-color-surface)] border border-white/10 p-6 rounded-3xl space-y-4 shadow-xl">
+                <h2 class="font-bold text-sm text-[#d0bcff] tracking-wider flex items-center gap-2">
                     <span>✨</span> Buat Postingan Baru
                 </h2>
-                <input type="text" id="postTitle" placeholder="Judul artikel..." class="w-full bg-[#0f0e13] border border-pink-950 rounded-xl px-4 py-3 text-sm text-pink-100 focus:outline-none focus:border-pink-500 placeholder:text-pink-900/60">
+                <input type="text" id="postTitle" placeholder="Judul artikel..." class="w-full bg-[var(--md-sys-color-surface-container)] border border-white/10 rounded-2xl px-4 py-3 text-sm text-[#e3e2e6] focus:outline-none focus:border-[#d0bcff] placeholder:text-white/30 transition">
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <input type="text" id="postCategory" placeholder="Kategori (Misal: Coding, Musik)" class="w-full bg-[#0f0e13] border border-pink-950 rounded-xl px-4 py-2 text-xs text-pink-100 focus:outline-none focus:border-pink-500 placeholder:text-pink-900/60">
+                    <input type="text" id="postCategory" placeholder="Kategori (Misal: Coding, Idol)" class="w-full bg-[var(--md-sys-color-surface-container)] border border-white/10 rounded-2xl px-4 py-2.5 text-xs text-[#e3e2e6] focus:outline-none focus:border-[#d0bcff] placeholder:text-white/30 transition">
                     
-                    <!-- UPLOAD GAMBAR DARI HP -->
-                    <div class="flex items-center gap-2 bg-[#0f0e13] border border-pink-950 rounded-xl px-3 py-1.5">
-                        <label class="cursor-pointer text-xs bg-pink-950/80 text-pink-300 hover:bg-pink-900 px-3 py-1.5 rounded-lg border border-pink-800/50 transition font-medium w-full text-center">
-                            🖼️ Pilih Gambar dari HP
-                            <input type="file" id="imageInput" accept="image/*" onchange="handleImageUpload(event)" class="hidden">
-                        </label>
-                    </div>
+                    <label class="cursor-pointer bg-[var(--md-sys-color-surface-container)] text-[#d0bcff] hover:bg-white/10 px-4 py-2.5 rounded-2xl border border-white/10 transition text-xs font-medium text-center flex items-center justify-center gap-1.5">
+                        <span>🖼️</span> Pilih Gambar HP
+                        <input type="file" id="imageInput" accept="image/*" onchange="handleImageUpload(event)" class="hidden">
+                    </label>
                 </div>
 
-                <!-- Preview Gambar Terpilih -->
                 <div id="imagePreviewContainer" class="hidden relative">
-                    <img id="imagePreview" src="" alt="Preview" class="w-full max-h-48 object-cover rounded-xl border border-pink-900/50">
-                    <button onclick="clearImage()" class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-lg hover:bg-rose-600 transition">Hapus Gambar</button>
+                    <img id="imagePreview" src="" alt="Preview" class="w-full max-h-48 object-cover rounded-2xl border border-white/10">
+                    <button onclick="clearImage()" class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2.5 py-1.5 rounded-full hover:bg-rose-600 transition">Hapus</button>
                 </div>
                 <input type="hidden" id="postMedia" value="">
 
-                <textarea id="postContent" rows="7" placeholder="Tulis isi artikel... (Support **Markdown**)" class="w-full bg-[#0f0e13] border border-pink-950 rounded-xl px-4 py-3 text-sm text-pink-100 focus:outline-none focus:border-pink-500 font-mono placeholder:text-pink-900/60"></textarea>
+                <textarea id="postContent" rows="6" placeholder="Tulis isi artikel... (Support Markdown)" class="w-full bg-[var(--md-sys-color-surface-container)] border border-white/10 rounded-2xl px-4 py-3 text-sm text-[#e3e2e6] focus:outline-none focus:border-[#d0bcff] font-mono placeholder:text-white/30 transition"></textarea>
                 
                 <div class="flex justify-end space-x-3 pt-2">
-                    <button onclick="toggleForm()" class="px-4 py-2 text-xs text-pink-400 hover:text-pink-200">Batal</button>
-                    <button onclick="addPost()" class="px-5 py-2 bg-pink-600 hover:bg-pink-500 text-white rounded-xl text-xs font-semibold shadow-md shadow-pink-900/40">Tambah ke Draft</button>
+                    <button onclick="toggleForm()" class="px-4 py-2 text-xs text-white/70 hover:text-white transition">Batal</button>
+                    <button onclick="addPost()" class="px-5 py-2.5 bg-[var(--md-sys-color-primary)] text-[var(--md-sys-color-on-primary)] rounded-full text-xs font-semibold shadow-md hover:opacity-90 transition">Publish Post</button>
                 </div>
             </div>
 
-            <div id="filterInfo" class="hidden justify-between items-center bg-pink-950/20 border border-pink-900/40 px-4 py-2 rounded-xl text-xs text-pink-300">
-                <span id="filterText">Menampilkan hasil pencarian</span>
-                <button onclick="clearFilter()" class="text-pink-400 font-bold hover:underline">Reset Filter ✕</button>
+            <div id="filterInfo" class="hidden justify-between items-center bg-[var(--md-sys-color-surface-container)] border border-white/10 px-4 py-3 rounded-2xl text-xs text-[#d0bcff]">
+                <span id="filterText">Menampilkan hasil</span>
+                <button onclick="clearFilter()" class="font-bold hover:underline">Reset ✕</button>
             </div>
 
             <section id="articleList" class="space-y-6"></section>
         </main>
 
+        <!-- Material You Sidebar -->
         <aside id="desktopSidebar" class="hidden md:block space-y-6"></aside>
     </div>
 
-    <footer class="border-t border-pink-950/40 py-6 text-center text-xs text-pink-400/40 mt-auto">
-        <p>&copy; 2026 • Jazzlyn Blog • Static Edition</p>
+    <footer class="border-t border-white/5 py-6 text-center text-xs text-white/40 mt-auto">
+        <p>&copy; 2026 • Jazzlyn Blog • Material You Edition</p>
     </footer>
 
     <script>
         let posts = JSON.parse(localStorage.getItem('jazzlyn_static_posts')) || [
             {
                 id: 1,
-                title: "Selamat Datang di Jazzlyn Blog!",
+                title: "Selamat Datang di Jazzlyn Blog M3!",
                 category: "Pengumuman",
-                content: "Ini adalah postingan pertamaku. Sekarang kamu bisa upload gambar langsung dari galeri HP! Coba klik tombol **+ Tulis** di atas.",
+                content: "Tampilan blog sudah diperbarui menjadi ala Material You yang bersih dan estetik. Silakan coba buat artikel baru!",
                 media: "",
                 date: "9 Agustus 2026"
             }
@@ -106,7 +124,6 @@
         let searchQuery = "";
         let uploadedImageBase64 = "";
 
-        // Fungsi handle upload gambar dari HP
         function handleImageUpload(event) {
             const file = event.target.files[0];
             if (file) {
@@ -149,34 +166,31 @@
             if(activeFilter || searchQuery) {
                 filterInfo.classList.remove('hidden');
                 filterInfo.classList.add('flex');
-                document.getElementById('filterText').innerText = `Filter aktif: ${activeFilter ? 'Kategori ['+activeFilter+']' : ''} ${searchQuery ? 'Pencarian "'+searchQuery+'"' : ''} (${filtered.length} hasil)`;
+                document.getElementById('filterText').innerText = `Filter: ${activeFilter ? '['+activeFilter+']' : ''} ${searchQuery ? '"'+searchQuery+'"' : ''} (${filtered.length})`;
             } else {
                 filterInfo.classList.remove('flex');
                 filterInfo.classList.add('hidden');
             }
 
             if(filtered.length === 0) {
-                container.innerHTML = `<div class="bg-[#14121a]/60 border border-pink-950/50 p-8 rounded-2xl text-center text-pink-400/60 text-sm">Belum ada artikel. Yuk buat postingan pertama!</div>`;
+                container.innerHTML = `<div class="bg-[var(--md-sys-color-surface)] border border-white/10 p-8 rounded-3xl text-center text-white/50 text-sm">Belum ada artikel.</div>`;
                 return;
             }
 
             filtered.forEach((post) => {
                 const parsedContent = marked.parse(post.content);
-                let mediaHtml = '';
-                if(post.media) {
-                    mediaHtml = `<img src="${post.media}" alt="Media Post" class="w-full rounded-xl mt-4 max-h-96 object-cover border border-pink-950/60 shadow-lg">`;
-                }
+                let mediaHtml = post.media ? `<img src="${post.media}" alt="Media" class="w-full rounded-2xl mt-4 max-h-96 object-cover border border-white/10 shadow-md">` : '';
 
                 container.innerHTML += `
-                    <article class="bg-[#14121a]/60 border border-pink-950/50 hover:border-pink-800/60 transition p-6 rounded-2xl shadow-xl space-y-4">
+                    <article class="bg-[var(--md-sys-color-surface)] border border-white/10 hover:border-white/20 transition p-6 rounded-3xl shadow-lg space-y-4">
                         <div class="flex justify-between items-center text-xs">
-                            <span class="text-pink-400/60 font-medium">${post.date}</span>
-                            <button onclick="filterByCategory('${post.category}')" class="bg-pink-950/40 text-pink-300 px-3 py-1 rounded-full border border-pink-900/30 hover:bg-pink-900/40 transition">${post.category || 'Umum'}</button>
+                            <span class="text-white/50">${post.date}</span>
+                            <button onclick="filterByCategory('${post.category}')" class="bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)] px-3 py-1 rounded-full font-medium transition">${post.category || 'Umum'}</button>
                         </div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-pink-100 tracking-wide">${post.title}</h3>
-                        <div class="text-pink-200/80 text-sm leading-relaxed space-y-2">${parsedContent}</div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-[#e3e2e6] tracking-wide">${post.title}</h3>
+                        <div class="text-[#c7c6ca] text-sm leading-relaxed space-y-2">${parsedContent}</div>
                         ${mediaHtml}
-                        <div class="pt-2 border-t border-pink-950/40 flex justify-end">
+                        <div class="pt-3 border-t border-white/5 flex justify-end">
                             <button onclick="deletePost(${post.id})" class="text-xs text-rose-400 hover:text-rose-300">Hapus Artikel</button>
                         </div>
                     </article>
@@ -188,35 +202,35 @@
             const categories = [...new Set(posts.map(p => p.category || 'Umum'))];
             let catButtons = '';
             categories.forEach(cat => {
-                catButtons += `<button onclick="filterByCategory('${cat}'); toggleMobileSidebar();" class="text-xs bg-[#16141f] border border-pink-950 hover:border-pink-500 text-pink-300 px-3 py-1.5 rounded-xl transition">${cat}</button>`;
+                catButtons += `<button onclick="filterByCategory('${cat}'); toggleMobileSidebar();" class="text-xs bg-[var(--md-sys-color-surface-container)] hover:bg-white/10 text-[#d0bcff] px-3.5 py-1.5 rounded-full border border-white/5 transition">${cat}</button>`;
             });
 
             let recentList = '';
             posts.slice(0, 5).forEach(p => {
-                recentList += `<div class="truncate text-pink-300/80 hover:text-pink-200 cursor-pointer" onclick="scrollToTop(); toggleMobileSidebar();">• ${p.title}</div>`;
+                recentList += `<div class="truncate text-white/70 hover:text-white cursor-pointer" onclick="scrollToTop(); toggleMobileSidebar();">• ${p.title}</div>`;
             });
 
             return `
-                <div class="bg-[#14121a]/80 border border-pink-950/60 p-5 rounded-2xl shadow-lg space-y-3">
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-pink-400">🔍 Cari Artikel</h3>
-                    <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Ketik kata kunci..." class="w-full bg-[#0f0e13] border border-pink-950 rounded-xl px-3 py-2 text-xs text-pink-100 focus:outline-none focus:border-pink-500 placeholder:text-pink-900/60">
+                <div class="bg-[var(--md-sys-color-surface)] border border-white/10 p-5 rounded-3xl shadow-md space-y-3">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-[#d0bcff]">🔍 Cari Artikel</h3>
+                    <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Ketik kata kunci..." class="w-full bg-[var(--md-sys-color-surface-container)] border border-white/10 rounded-2xl px-3.5 py-2 text-xs text-[#e3e2e6] focus:outline-none focus:border-[#d0bcff] placeholder:text-white/30">
                 </div>
-                <div class="bg-[#14121a]/80 border border-pink-950/60 p-5 rounded-2xl shadow-lg space-y-3 text-center">
-                    <div class="w-16 h-16 bg-gradient-to-tr from-pink-600 to-rose-500 rounded-full mx-auto flex items-center text-2xl shadow-lg justify-center">🌸</div>
-                    <h3 class="font-bold text-sm text-pink-200">Jazzlyn / Wota Dev</h3>
-                    <p class="text-xs text-pink-400/70 leading-relaxed">Catatan harian & eksperimen web.</p>
-                    <div class="pt-2 border-t border-pink-950/60 flex justify-around text-xs text-pink-400">
-                        <div><span class="block font-bold text-pink-200 text-sm">${posts.length}</span>Post</div>
-                        <div><span class="block font-bold text-pink-200 text-sm">${categories.length}</span>Kategori</div>
+                <div class="bg-[var(--md-sys-color-surface)] border border-white/10 p-5 rounded-3xl shadow-md space-y-3 text-center">
+                    <div class="w-14 h-14 bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)] rounded-full mx-auto flex items-center text-xl shadow-inner justify-center">🌸</div>
+                    <h3 class="font-bold text-sm text-[#e3e2e6]">Jazzlyn / Wota Dev</h3>
+                    <p class="text-xs text-white/60 leading-relaxed">Catatan harian & eksperimen web.</p>
+                    <div class="pt-2 border-t border-white/5 flex justify-around text-xs text-white/70">
+                        <div><span class="block font-bold text-[#e3e2e6] text-sm">${posts.length}</span>Post</div>
+                        <div><span class="block font-bold text-[#e3e2e6] text-sm">${categories.length}</span>Kategori</div>
                     </div>
                 </div>
-                <div class="bg-[#14121a]/80 border border-pink-950/60 p-5 rounded-2xl shadow-lg space-y-3">
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-pink-400">📂 Kategori</h3>
+                <div class="bg-[var(--md-sys-color-surface)] border border-white/10 p-5 rounded-3xl shadow-md space-y-3">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-[#d0bcff]">📂 Kategori</h3>
                     <div class="flex flex-wrap gap-2">${catButtons}</div>
                 </div>
-                <div class="bg-[#14121a]/80 border border-pink-950/60 p-5 rounded-2xl shadow-lg space-y-3">
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-pink-400">⚡ Postingan Terbaru</h3>
-                    <div class="space-y-2 text-xs">${recentList || '<span class="text-pink-400/40">Belum ada post</span>'}</div>
+                <div class="bg-[var(--md-sys-color-surface)] border border-white/10 p-5 rounded-3xl shadow-md space-y-3">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-[#d0bcff]">⚡ Terbaru</h3>
+                    <div class="space-y-2 text-xs">${recentList || '<span class="text-white/30">Belum ada post</span>'}</div>
                 </div>
             `;
         }
@@ -262,7 +276,7 @@
             clearImage();
             toggleForm();
             renderBlog();
-            alert("✨ Artikel berhasil ditambahkan! Jangan lupa klik 'Download HTML' di atas untuk update file web-nya.");
+            alert("✨ Artikel berhasil ditambahkan! Jangan lupa klik 'Download HTML' untuk update web-nya.");
         }
 
         function deletePost(id) {
