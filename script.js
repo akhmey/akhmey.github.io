@@ -3,7 +3,7 @@
 // (Tiap nulis post baru, buat file .md di folder posts/, lalu tulis namanya di bawah ini)
 // ==========================================
 const postFiles = [
-    'posts/post1.md'
+    'posts/post1.md',
     'posts/post2.md'
 ];
 
