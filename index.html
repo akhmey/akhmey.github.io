@@ -3,75 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>★ akhmey.zone || Y2K Cyber Oasis ★</title>
-    <!-- Google Fonts -->
+    <meta name="description" content="Blog pribadi AKHMEY — kumpulan tulisan, catatan, dan pengalaman seputar teknologi dan kehidupan.">
+    <title>AKHMEY | Personal Blog</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-
-    <!-- Marquee Y2K -->
-    <div class="marquee-container">
-        <p class="marquee-text">
-            ✦ WELCOME TO AKHMEY'S DIGITAL REALM ✦ SYSTEM STATUS: ONLINE ✦ COMPACT MODE ACTIVE ✦ WELCOME TO THE FUTURE 2000 ✦
-        </p>
-    </div>
-
-    <div class="main-layout">
-        <!-- Sidebar Navigation (Compact & Fixed on desktop) -->
-        <aside class="window-box sidebar">
-            <div class="window-header">
-                <span>[NAV.EXE]</span>
-                <div class="window-controls">_ □ X</div>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="brand-wrap">
+                <span class="brand-mark">A</span>
+                <div>
+                    <p class="brand-kicker">personal blog</p>
+                    <h1 class="brand-name">AKHMEY</h1>
+                </div>
             </div>
-            <div class="window-content">
-                <div class="avatar-box">
-                    <div class="avatar-placeholder">👾</div>
-                    <p class="user-status">● ONLINE</p>
-                </div>
-                <nav>
-                    <ul class="nav-links">
-                        <li><a href="#home" class="active">>> Home</a></li>
-                        <li><a href="#posts-container">>> Blog Logs</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </aside>
 
-        <!-- Main Content Area -->
-        <main class="content-area">
-            
-            <!-- Welcome Window -->
-            <section class="window-box" id="home">
-                <div class="window-header">
-                    <span>★ Welcome.html ★</span>
-                    <div class="window-controls">_ □ X</div>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="#home" class="active">Home</a>
+                <a href="#posts-container">Writing</a>
+                <a href="#about">About</a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <section class="hero" id="home">
+                <div class="hero-copy">
+                    <p class="eyebrow">thoughts, notes, and experiments</p>
+                    <h2>Exploring technology, creativity, and everyday life.</h2>
+                    <p>
+                        Blog pribadi untuk menulis tentang perjalanan belajar, pengalaman digital,
+                        serta ide-ide kecil yang berkembang dari proses kerja dan observasi harian.
+                    </p>
+
+                    <div class="hero-meta">
+                        <span>📍 Indonesia</span>
+                        <span>💻 Tech & life</span>
+                        <span>✍️ Writing</span>
+                    </div>
                 </div>
-                <div class="window-content">
-                    <h1 class="glitch-title">AKHMEY.LOG</h1>
-                    <p class="subtitle">Exploring the cyber frontier, one line of code at a time...</p>
-                    <hr class="pixel-hr">
-                    <p>Selamat datang di blog pribadi gue. Navigasi telah dioptimalkan agar lebih ringkas dan bebas scroll panjang!</p>
-                </div>
+
+                <aside class="profile-card" id="about">
+                    <p class="card-label">About</p>
+                    <h3>AKHMEY</h3>
+                    <p>
+                        Saya menulis untuk mengingat, belajar, dan membagikan perspektif tentang dunia
+                        teknologi, kreativitas, serta kehidupan sehari-hari yang penuh perubahan.
+                    </p>
+                </aside>
             </section>
 
-            <!-- CONTAINER POSTINGAN (GRID / COMPACT CARDS) -->
-            <div id="posts-container" class="posts-grid">
-                <!-- Postingan Markdown otomatis dimuat dalam card ringkas -->
-            </div>
+            <section class="posts-section">
+                <div class="section-heading">
+                    <p class="eyebrow">Latest posts</p>
+                    <h3>Artikel terbaru</h3>
+                </div>
 
+                <div id="posts-container" class="posts-grid" aria-live="polite"></div>
+            </section>
         </main>
-    </div>
 
-    <!-- Back to Top & Footer -->
-    <footer class="window-box footer">
-        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="y2k-btn" style="margin-bottom: 15px;">▲ BACK TO TOP</button>
-        <p>© 2000-2026 AKHMEY. ALL RIGHTS RESERVED. <span class="blink">_</span></p>
-    </footer>
+        <footer class="site-footer">
+            <p>© 2026 AKHMEY — built with Markdown, curiosity, and a little obsession with clean design.</p>
+        </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>

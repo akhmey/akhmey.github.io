@@ -1,76 +1,300 @@
-// ==========================================
-// DAFTAR POSTINGAN KAMU 
-// ==========================================
 const postFiles = [
     'posts/post1.md',
     'posts/post2.md'
 ];
 
+function parseMarkdownPost(markdownText) {
+    const titleMatch = markdownText.match(/^#\s+(.+)$/m) ||
+        markdownText.match(/^###\s+(.+)$/m) ||
+        markdownText.match(/^##\s+(.+)$/m);
+
+    const dateMatch = markdownText.match(/\b(\d{1,2}\s+[A-Za-z]+\s+\d{4})\b/) ||
+        markdownText.match(/\b(\d{4}-\d{2}-\d{2})\b/);
+
+    const categoryMatch = markdownText.match(/Kategori:\s*([^\n]+)/i) ||
+        markdownText.match(/by\s+([^\n]+)/i);
+
+    return {
+        title: titleMatch ? titleMatch[1].trim() : 'Untitled Post',
+        date: dateMatch ? dateMatch[1].trim() : '',
+        category: categoryMatch ? categoryMatch[1].trim() : 'Writing'
+    };
+}
+
 async function loadPosts() {
     const container = document.getElementById('posts-container');
     if (!container) return;
-    
-    container.innerHTML = '<div class="window-box" style="grid-column: 1/-1;"><div class="window-content"><p>⚡ Loading cyber logs...</p></div></div>';
 
-    let allPostsHTML = '';
+    container.innerHTML = '<article class="post-card"><div class="post-card-body"><p>Loading posts...</p></div></article>';
 
-    for (let index = 0; index < postFiles.length; index++) {
-        let file = postFiles[index];
+    const postsHTML = [];
+
+    for (const file of postFiles) {
         try {
             const response = await fetch(file);
-            if (!response.ok) throw new Error('File tidak ditemukan');
-            
-            const markdownText = await response.text();
-            const htmlContent = marked.parse(markdownText);
-            const fileName = file.split('/').pop();
+            if (!response.ok) throw new Error('File not found');
 
-            // Membuat card preview ringkas agar tidak bikin scroll panjang
-            allPostsHTML += `
-                <article class="window-box post-card" id="post-${index}">
-                    <div class="window-header">
-                        <span>📝 ${fileName}</span>
-                        <div class="window-controls">_ □ X</div>
+            const markdownText = await response.text();
+            const { title, date, category } = parseMarkdownPost(markdownText);
+            const htmlContent = marked.parse(markdownText);
+
+            postsHTML.push(`
+                <article class="post-card">
+                    <div class="post-card-header">
+                        <span class="post-tag">${category}</span>
+                        <time class="post-date">${date || 'Published recently'}</time>
                     </div>
-                    <div class="window-content post-preview-body">
-                        <div class="post-snippet">
-                            ${htmlContent}
-                        </div>
-                        <div class="read-more-overlay"></div>
-                        <button class="y2k-btn expand-btn" onclick="togglePost(${index})">EXPAND LOG</button>
+                    <div class="post-card-body">
+                        <h2>${title}</h2>
+                        ${htmlContent}
+                    </div>
+                    <div class="post-card-footer">
+                        <button class="read-more-btn" type="button">Baca selengkapnya</button>
                     </div>
                 </article>
-            `;
-        } catch (err) {
-            console.error('Gagal memuat:', file, err);
+            `);
+        } catch (error) {
+            console.error('Gagal memuat post:', file, error);
         }
     }
 
-    container.innerHTML = allPostsHTML;
+    container.innerHTML = postsHTML.join('');
+
+    const buttons = document.querySelectorAll('.read-more-btn');
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const card = button.closest('.post-card');
+            const isExpanded = card.classList.toggle('is-expanded');
+            button.textContent = isExpanded ? 'Sembunyikan' : 'Baca selengkapnya';
+        });
+    });
 }
 
-// Fungsi toggle expand/collapse card post agar tidak kepanjangan
-function togglePost(index) {
-    const postCard = document.getElementById(`post-${index}`);
-    const snippet = postCard.querySelector('.post-snippet');
-    const btn = postCard.querySelector('.expand-btn');
-
-    postCard.classList.toggle('expanded');
-    if (postCard.classList.contains('expanded')) {
-        btn.textContent = 'COLLAPSE LOG';
-    } else {
-        btn.textContent = 'EXPAND LOG';
-        postCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-}
-
-// Jalankan saat halaman dibuka
 document.addEventListener('DOMContentLoaded', loadPosts);
 
-// Efek Judul Tab Berubah saat ditinggal
-let originalTitle = document.title;
-window.addEventListener('blur', () => {
-    document.title = "★ COME BACK TO THE CYBERSPACE ★";
+window.addEventListener('load', () => {
+    document.body.classList.add('is-ready');
 });
-window.addEventListener('focus', () => {
-    document.title = originalTitle;
+
+const navLinks = document.querySelectorAll('.main-nav a');
+navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+        navLinks.forEach((item) => item.classList.remove('active'));
+        link.classList.add('active');
+    });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
