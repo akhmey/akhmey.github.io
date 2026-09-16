@@ -2,12 +2,17 @@
 *16 September 2026 — by admin 0x8b321300*
 
 ---
+[![HRd-L7n-Ubk-AA05RB.jpg](https://i.postimg.cc/25MNj3D8/HRd-L7n-Ubk-AA05RB.jpg)](https://postimg.cc/zLCc0zv9)
 
+---
 ### 1. Ribka Budiman
 Ribka JKT48 atau Ribka Budiman adalah member JKT48 generasi 12 dari Team Passion. Alasan admin memilih Ribka jadi member paling cantik se-JKT48 karena... ya memang cantik lah wkwkw. 
 
 Dari awal debut generasi 12, mata admin sudah penasaran dengan member yang senyumnya manis banget itu. Vibes dia cocok banget sama jiko dia: *"Mirror mirror on the wall, who's the sweetest in here? It's me, Ribka!"*
+---
+[![HOoc-K7gag-AAOBPg.jpg](https://i.postimg.cc/ZKRHHHNQ/HOoc-K7gag-AAOBPg.jpg)](https://postimg.cc/Lhcj6zNk)
 
+---
 ### 2. Jazzlyn Thrisa
 Trisha JKT48, dede tica, atau Jazzlyn Agatha Trisha Indra Putri — buset namanya panjang bener wkwkw. 
 
