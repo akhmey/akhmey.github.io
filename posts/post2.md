@@ -1,17 +1,17 @@
-### 5 member paling cantik dan menggemaskan di JKT48
-* 16 september 2026 - by admin 0x8b321300 *
+# 5 Member Paling Cantik dan Menggemaskan di JKT48
+*16 September 2026 — by admin 0x8b321300*
 
-  - 1. Ribka Budiman
-Ribka JKT48 atau Ribka Budiman adalah member JKT48 dari generasi 12 dari Team Passion,
-alasan admin memilih Ribka jadi member paling cantik se JKT48 karena, ya memang cantik lah wkwkw.
-dari awal debut generasi 12 mata admin sudah penasaran dengan member yang senyumya manis banget itu.
-vibes dia cocok banget sama jiko dia "Mirror mirror on the wall, who's the sweetest in here? It's me, Ribka!"
+---
 
- - 2. Jazzlyn Thrisa
-Trisha JKT48 atau dede tica atau Jazzlyn Agatha Trisha Indra Putri, buset namanaya panjang bener wkwkw.
-merupakan member pilihan kedua admin, kalo trisha sih jelas sangat mengemaskan lah ya.
-si pelukis yang sangat pandai melikiskan hal-hal membahagiakan di hati para FJKT48
+### 1. Ribka Budiman
+Ribka JKT48 atau Ribka Budiman adalah member JKT48 generasi 12 dari Team Passion. Alasan admin memilih Ribka jadi member paling cantik se-JKT48 karena... ya memang cantik lah wkwkw. 
 
-- 3. Jemima Evodie
-jemima atau Jemima Evodie Mayra Lijaya adalah member JKT84 trainee dari generasi 13, kalo jemima sih senyumnya ya nempel banget
-sekali senyum kayak candu gtu wkwkw. apalagi di mv terbaru JKT48 trainee "Bagai cinta pertama".
+Dari awal debut generasi 12, mata admin sudah penasaran dengan member yang senyumnya manis banget itu. Vibes dia cocok banget sama jiko dia: *"Mirror mirror on the wall, who's the sweetest in here? It's me, Ribka!"*
+
+### 2. Jazzlyn Thrisa
+Trisha JKT48, dede tica, atau Jazzlyn Agatha Trisha Indra Putri — buset namanya panjang bener wkwkw. 
+
+Merupakan member pilihan kedua admin. Kalo Trisha sih jelas sangat menggemaskan lah ya. Si pelukis yang sangat pandai melukiskan hal-hal membahagiakan di hati para FJKT48.
+
+### 3. Jemima Evodie
+Jemima atau Jemima Evodie Mayra Lijaya adalah member JKT48 trainee dari generasi 13. Kalo Jemima sih senyumnya nempel banget, sekali senyum kayak candu gitu wkwkw. Apalagi di MV terbaru JKT48 trainee "Bagai Cinta Pertama".
