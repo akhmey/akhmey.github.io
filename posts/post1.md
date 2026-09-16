@@ -1,4 +1,4 @@
-rnaling di Hari-Hari yang Terasa Bagai Time Skip
+journaling di Hari-Hari yang Terasa Bagai Time Skip
 *16 September 2026 | Kategori: Life*
 
 Harusnya gw mulai journaling dari tanggal 12 kemarin, cuma entah bagaimana hidup gw berasa kena *time skip* gitu aja. Tahu-tahu udah pertengahan bulan.
