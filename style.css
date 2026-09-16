@@ -1,275 +1,78 @@
-/* --- RESET & GLOBAL VARS --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AKHMEY — personal journal and blog of thoughts, notes, and everyday observations.">
+    <title>AKHMEY — Journal</title>
 
-:root {
-    --bg-color: #0b021a;
-    --window-bg: #160a2c;
-    --cyan-neon: #00ffff;
-    --pink-neon: #ff007f;
-    --lime-neon: #39ff14;
-    --text-color: #e0f7fa;
-    --header-bg: linear-gradient(90deg, #ff007f, #7b2cbf);
-    --border-light: #ff77bc;
-    --border-dark: #4a0e4e;
-    --spacing-xs: 6px;
-    --spacing-sm: 12px;
-    --spacing-md: 20px;
-    --spacing-lg: 30px;
-    --spacing-xl: 40px;
-}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="brand-wrap">
+                <div class="brand-mark">A</div>
+                <div class="brand-copy">
+                    <p class="brand-kicker">personal journal</p>
+                    <h1 class="brand-name">AKHMEY</h1>
+                </div>
+            </div>
 
-html {
-    scroll-behavior: smooth;
-}
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="#home" class="active">Home</a>
+                <a href="#posts-container">Journal</a>
+                <a href="#about">About</a>
+            </nav>
+        </header>
 
-body {
-    background-color: var(--bg-color);
-    background-image: 
-        linear-gradient(rgba(255, 0, 127, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 0, 127, 0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
-    background-attachment: fixed;
-    color: var(--text-color);
-    font-family: 'VT323', monospace;
-    font-size: 1.2rem;
-    padding: var(--spacing-md);
-    cursor: crosshair;
-    line-height: 1.6;
-}
+        <main class="main-content">
+            <section class="hero" id="home">
+                <div class="hero-copy">
+                    <p class="eyebrow">notes from a living mind</p>
+                    <h2>Writing about the things that move me.</h2>
+                    <p>
+                        Ini adalah ruang pribadi untuk menulis apa pun yang ingin saya catat: pemikiran,
+                        pengalaman harian, observasi kecil, dan cerita yang mungkin tak perlu terlalu serius,
+                        tapi tetap punya arti.
+                    </p>
 
-/* --- MARQUEE --- */
-.marquee-container {
-    background: #000;
-    border: 2px solid var(--cyan-neon);
-    color: var(--lime-neon);
-    padding: var(--spacing-sm);
-    margin-bottom: var(--spacing-lg);
-    overflow: hidden;
-    white-space: nowrap;
-    box-shadow: 0 0 8px var(--cyan-neon), inset 0 0 8px rgba(0, 255, 255, 0.2);
-}
+                    <div class="hero-meta">
+                        <span>📍 Indonesia</span>
+                        <span>✍️ Journal</span>
+                        <span>🌿 Life notes</span>
+                    </div>
+                </div>
 
-.marquee-text {
-    display: inline-block;
-    animation: marquee 15s linear infinite;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-}
+                <aside class="profile-card" id="about">
+                    <p class="card-label">About</p>
+                    <h3>AKHMEY</h3>
+                    <p>
+                        Saya menulis untuk mengingat, menimbang, dan membagikan sudut pandang tentang
+                        hidup, teknologi, serta segala hal yang terasa nyata di sekitar saya.
+                    </p>
+                </aside>
+            </section>
 
-@keyframes marquee {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-}
+            <section class="posts-section">
+                <div class="section-heading">
+                    <p class="eyebrow">latest entries</p>
+                    <h3>Recent notes</h3>
+                </div>
 
-/* --- LAYOUT --- */
-.main-layout {
-    display: flex;
-    gap: var(--spacing-lg);
-    max-width: 1200px;
-    margin: 0 auto var(--spacing-xl);
-}
+                <div id="posts-container" class="posts-grid" aria-live="polite"></div>
+            </section>
+        </main>
 
-.sidebar {
-    flex: 0 0 260px;
-    position: sticky;
-    top: var(--spacing-md);
-    height: fit-content;
-}
+        <footer class="site-footer">
+            <p>© 2026 AKHMEY — a journal of random thoughts, stories, and quiet observations.</p>
+        </footer>
+    </div>
 
-.content-area {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-}
-
-/* --- POSTS GRID & COMPACT CARDS --- */
-.posts-grid {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-}
-
-.post-card {
-    position: relative;
-}
-
-.post-card .post-snippet {
-    max-height: 180px;
-    overflow: hidden;
-    position: relative;
-    transition: max-height 0.4s ease;
-}
-
-.post-card.expanded .post-snippet {
-    max-height: 2000px;
-}
-
-.read-more-overlay {
-    position: absolute;
-    bottom: 45px;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background: linear-gradient(transparent, var(--window-bg));
-    pointer-events: none;
-    transition: opacity 0.3s;
-}
-
-.post-card.expanded .read-more-overlay {
-    opacity: 0;
-    display: none;
-}
-
-/* --- WINDOW BOX --- */
-.window-box {
-    background: var(--window-bg);
-    border: 3px outset var(--border-light);
-    box-shadow: 4px 4px 0px #000, 0 0 10px rgba(255, 0, 127, 0.3);
-}
-
-.window-header {
-    background: var(--header-bg);
-    color: #fff;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.65rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid #000;
-}
-
-.window-controls {
-    letter-spacing: 2px;
-}
-
-.window-content {
-    padding: var(--spacing-md);
-}
-
-/* --- ELEMENTS --- */
-.glitch-title {
-    font-family: 'Press Start 2P', cursive;
-    color: var(--cyan-neon);
-    text-shadow: 3px 3px var(--pink-neon);
-    font-size: 1.8rem;
-    margin-bottom: var(--spacing-md);
-}
-
-.subtitle {
-    color: var(--lime-neon);
-    font-size: 0.95rem;
-    margin-bottom: var(--spacing-md);
-}
-
-.pixel-hr {
-    border: 0;
-    height: 2px;
-    background: var(--pink-neon);
-    margin: var(--spacing-md) 0;
-}
-
-.avatar-box {
-    text-align: center;
-    margin-bottom: var(--spacing-lg);
-    padding-bottom: var(--spacing-lg);
-    border-bottom: 2px dashed var(--border-light);
-}
-
-.avatar-placeholder {
-    font-size: 4rem;
-    background: #000;
-    border: 2px inset var(--cyan-neon);
-    display: inline-block;
-    padding: var(--spacing-md);
-    margin-bottom: var(--spacing-sm);
-}
-
-.user-status {
-    color: var(--lime-neon);
-    font-size: 0.9rem;
-    animation: blinker 1.5s infinite;
-}
-
-.nav-links {
-    list-style: none;
-}
-
-.nav-links li {
-    margin: var(--spacing-sm) 0;
-}
-
-.nav-links a {
-    color: var(--cyan-neon);
-    text-decoration: none;
-    display: block;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    transition: all 0.2s;
-}
-
-.nav-links a:hover, .nav-links a.active {
-    background: var(--pink-neon);
-    color: #fff;
-}
-
-.y2k-btn {
-    background: #000;
-    color: var(--lime-neon);
-    border: 2px outset var(--cyan-neon);
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.65rem;
-    padding: var(--spacing-sm) var(--spacing-md);
-    cursor: pointer;
-    margin-top: var(--spacing-md);
-    transition: all 0.2s;
-    width: 100%;
-}
-
-.y2k-btn:hover {
-    background: var(--pink-neon);
-    color: #000;
-}
-
-.blink {
-    animation: blinker 1s infinite;
-    color: var(--cyan-neon);
-}
-
-@keyframes blinker {
-    50% { opacity: 0; }
-}
-
-.footer {
-    text-align: center;
-    max-width: 1200px;
-    margin: var(--spacing-xl) auto 0;
-    font-size: 0.9rem;
-    padding: var(--spacing-md);
-}
-
-/* --- MARKDOWN STYLING --- */
-.post-snippet h1, .post-snippet h2, .post-snippet h3 {
-    color: var(--cyan-neon);
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-.post-snippet p {
-    margin-bottom: 10px;
-}
-
-@media (max-width: 768px) {
-    .main-layout {
-        flex-direction: column;
-    }
-    .sidebar {
-        position: static;
-        width: 100%;
-    }
-}
+    <script src="script.js"></script>
+</body>
+</html>

@@ -4,28 +4,37 @@ const postFiles = [
 ];
 
 function parseMarkdownPost(markdownText) {
-    const titleMatch = markdownText.match(/^#\s+(.+)$/m) ||
-        markdownText.match(/^###\s+(.+)$/m) ||
-        markdownText.match(/^##\s+(.+)$/m);
+    const titleMatch = markdownText.match(/^#\s+(.+)$/m)
+        || markdownText.match(/^##\s+(.+)$/m)
+        || markdownText.match(/^###\s+(.+)$/m);
 
-    const dateMatch = markdownText.match(/\b(\d{1,2}\s+[A-Za-z]+\s+\d{4})\b/) ||
-        markdownText.match(/\b(\d{4}-\d{2}-\d{2})\b/);
+    const dateMatch = markdownText.match(/\b\d{1,2}\s+[A-Za-z]+\s+\d{4}\b/)
+        || markdownText.match(/\b\d{4}-\d{2}-\d{2}\b/);
 
-    const categoryMatch = markdownText.match(/Kategori:\s*([^\n]+)/i) ||
-        markdownText.match(/by\s+([^\n]+)/i);
+    const categoryMatch = markdownText.match(/Kategori:\s*([^\n]+)/i)
+        || (markdownText.toLowerCase().includes('by admin') ? ['','Journal'] : null)
+        || (markdownText.toLowerCase().includes('life') ? ['','Life'] : null);
 
     return {
-        title: titleMatch ? titleMatch[1].trim() : 'Untitled Post',
-        date: dateMatch ? dateMatch[1].trim() : '',
-        category: categoryMatch ? categoryMatch[1].trim() : 'Writing'
+        title: titleMatch ? titleMatch[1].trim() : 'Untitled note',
+        date: dateMatch ? dateMatch[0].trim() : 'Published recently',
+        category: categoryMatch && categoryMatch[1] ? categoryMatch[1].trim() : 'Journal'
     };
+}
+
+function stripLeadingHeading(markdownText) {
+    return markdownText
+        .replace(/^#\s+.*\n+/m, '')
+        .replace(/^##\s+.*\n+/m, '')
+        .replace(/^###\s+.*\n+/m, '')
+        .trim();
 }
 
 async function loadPosts() {
     const container = document.getElementById('posts-container');
     if (!container) return;
 
-    container.innerHTML = '<article class="post-card"><div class="post-card-body"><p>Loading posts...</p></div></article>';
+    container.innerHTML = '<article class="post-card"><div class="post-card-body"><p>Loading notes...</p></div></article>';
 
     const postsHTML = [];
 
@@ -36,20 +45,21 @@ async function loadPosts() {
 
             const markdownText = await response.text();
             const { title, date, category } = parseMarkdownPost(markdownText);
-            const htmlContent = marked.parse(markdownText);
+            const cleanedMarkdown = stripLeadingHeading(markdownText);
+            const htmlContent = marked.parse(cleanedMarkdown || markdownText);
 
             postsHTML.push(`
                 <article class="post-card">
                     <div class="post-card-header">
                         <span class="post-tag">${category}</span>
-                        <time class="post-date">${date || 'Published recently'}</time>
+                        <time class="post-date">${date}</time>
                     </div>
                     <div class="post-card-body">
-                        <h2>${title}</h2>
+                        <h2 class="post-card-title">${title}</h2>
                         ${htmlContent}
                     </div>
                     <div class="post-card-footer">
-                        <button class="read-more-btn" type="button">Baca selengkapnya</button>
+                        <button class="read-more-btn" type="button">Read more</button>
                     </div>
                 </article>
             `);
@@ -64,17 +74,13 @@ async function loadPosts() {
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
             const card = button.closest('.post-card');
-            const isExpanded = card.classList.toggle('is-expanded');
-            button.textContent = isExpanded ? 'Sembunyikan' : 'Baca selengkapnya';
+            const expanded = card.classList.toggle('is-expanded');
+            button.textContent = expanded ? 'Collapse' : 'Read more';
         });
     });
 }
 
 document.addEventListener('DOMContentLoaded', loadPosts);
-
-window.addEventListener('load', () => {
-    document.body.classList.add('is-ready');
-});
 
 const navLinks = document.querySelectorAll('.main-nav a');
 navLinks.forEach((link) => {
@@ -84,6 +90,7 @@ navLinks.forEach((link) => {
     });
 });
 
+window.addEventListener('load', () => document.body.classList.add('is-ready'));
 
 
 
@@ -291,6 +298,773 @@ navLinks.forEach((link) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+n
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+n
 
 
 
