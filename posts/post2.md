@@ -22,10 +22,14 @@ Jemima atau Jemima Evodie Mayra Lijaya adalah member JKT48 trainee dari generasi
 
 
 ---
+[![Oniel-JKT48.png](https://i.postimg.cc/m2tqkBmY/Oniel-JKT48.png)](https://postimg.cc/ZCzjDttn)
 ### 4. Cornelia Vanisa
 Oniel atau Cornelia Syafa Vanisa, merupakan member JKT48 team passion dari generasi 8. kita kesampingkan dulu talenta oniel sebagai pelawak handal.
 
 menurut admin oniel itu sangat cantik dan anggun kalo jokes bapak-bapaknya di hilangkan. tapi jagan deh oniel tetap cantik kok walapun jokesnya bapak-bapak. 
 
+
+---
+[![Nachia-JKT48-(1).jpg](https://i.postimg.cc/Qx3mGDvR/Nachia-JKT48-(1).jpg)](https://postimg.cc/8sZMM2pH)
 ### 5. Nina Tutachia
 Nachia atau Nina Tutachia Browning Chapman.. lucuk banget namanya wehh. jujur cantik ya nachia. kayak pernah lihat gtu di tipi tipi. ternyata emg iya dia sering jadi pemain sinetrron di tipi. apalagi cara ngomongnya kek bule British. 
