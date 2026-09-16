@@ -22,12 +22,8 @@ function parseMarkdownPost(markdownText) {
     };
 }
 
-function stripLeadingHeading(markdownText) {
-    return markdownText
-        .replace(/^#\s+.*\n+/m, '')
-        .replace(/^##\s+.*\n+/m, '')
-        .replace(/^###\s+.*\n+/m, '')
-        .trim();
+function stripLeadingTitle(markdownText) {
+    return markdownText.replace(/^#\s+.*\n+/, '').trim();
 }
 
 async function loadPosts() {
@@ -45,7 +41,7 @@ async function loadPosts() {
 
             const markdownText = await response.text();
             const { title, date, category } = parseMarkdownPost(markdownText);
-            const cleanedMarkdown = stripLeadingHeading(markdownText);
+            const cleanedMarkdown = stripLeadingTitle(markdownText);
             const htmlContent = marked.parse(cleanedMarkdown || markdownText);
 
             postsHTML.push(`
