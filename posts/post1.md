@@ -1,4 +1,4 @@
-###journaling di Hari-Hari yang Terasa Bagai Time Skip
+### journaling di Hari-Hari yang Terasa Bagai Time Skip
 - 16 September 2026 | Kategori: Life
 
 ![https://i.postimg.cc/JnSf6RZ4/HIm-PPZna-EAA1A7j.jpg](https://i.postimg.cc/JnSf6RZ4/HIm-PPZna-EAA1A7j.jpg)
