@@ -28,7 +28,6 @@ html {
 
 body {
     background-color: var(--bg-color);
-    /* Motif Grid Cyber Retro */
     background-image: 
         linear-gradient(rgba(255, 0, 127, 0.1) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 0, 127, 0.1) 1px, transparent 1px);
@@ -75,29 +74,6 @@ body {
     margin: 0 auto var(--spacing-xl);
 }
 
-@media (max-width: 1024px) {
-    .main-layout {
-        gap: var(--spacing-md);
-        max-width: 900px;
-    }
-}
-
-@media (max-width: 768px) {
-    .main-layout {
-        flex-direction: column;
-        gap: var(--spacing-md);
-    }
-    
-    body {
-        padding: var(--spacing-sm);
-        font-size: 1rem;
-    }
-    
-    .marquee-text {
-        font-size: 0.6rem;
-    }
-}
-
 .sidebar {
     flex: 0 0 260px;
     position: sticky;
@@ -113,23 +89,49 @@ body {
     gap: var(--spacing-lg);
 }
 
-@media (max-width: 768px) {
-    .sidebar {
-        flex: 1;
-        position: static;
-    }
+/* --- POSTS GRID & COMPACT CARDS --- */
+.posts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
 }
 
-/* --- WINDOW BOX (STIL WINDOWS 98 / CYBER) --- */
+.post-card {
+    position: relative;
+}
+
+.post-card .post-snippet {
+    max-height: 180px;
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.4s ease;
+}
+
+.post-card.expanded .post-snippet {
+    max-height: 2000px;
+}
+
+.read-more-overlay {
+    position: absolute;
+    bottom: 45px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(transparent, var(--window-bg));
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.post-card.expanded .read-more-overlay {
+    opacity: 0;
+    display: none;
+}
+
+/* --- WINDOW BOX --- */
 .window-box {
     background: var(--window-bg);
     border: 3px outset var(--border-light);
-    box-shadow: 4px 4px 0px #000, 0 0 10px rgba(255, 0, 127, 0.3), inset 1px 1px 0 rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.window-box:hover {
-    box-shadow: 4px 4px 0px #000, 0 0 15px rgba(255, 0, 127, 0.5), inset 1px 1px 0 rgba(255, 255, 255, 0.2);
+    box-shadow: 4px 4px 0px #000, 0 0 10px rgba(255, 0, 127, 0.3);
 }
 
 .window-header {
@@ -142,8 +144,6 @@ body {
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #000;
-    letter-spacing: 1px;
-    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
 }
 
 .window-controls {
@@ -154,20 +154,13 @@ body {
     padding: var(--spacing-md);
 }
 
-/* --- ELEMENT DESIGN --- */
+/* --- ELEMENTS --- */
 .glitch-title {
     font-family: 'Press Start 2P', cursive;
     color: var(--cyan-neon);
     text-shadow: 3px 3px var(--pink-neon);
     font-size: 1.8rem;
     margin-bottom: var(--spacing-md);
-    letter-spacing: 2px;
-    animation: subtle-glow 2s ease-in-out infinite;
-}
-
-@keyframes subtle-glow {
-    0%, 100% { text-shadow: 3px 3px var(--pink-neon); }
-    50% { text-shadow: 3px 3px var(--pink-neon), 0 0 8px rgba(255, 0, 127, 0.5); }
 }
 
 .subtitle {
@@ -181,7 +174,6 @@ body {
     height: 2px;
     background: var(--pink-neon);
     margin: var(--spacing-md) 0;
-    box-shadow: 0 0 5px var(--pink-neon);
 }
 
 .avatar-box {
@@ -197,14 +189,12 @@ body {
     border: 2px inset var(--cyan-neon);
     display: inline-block;
     padding: var(--spacing-md);
-    box-shadow: 0 0 12px rgba(0, 255, 255, 0.4), inset 0 0 8px rgba(0, 255, 255, 0.2);
     margin-bottom: var(--spacing-sm);
 }
 
 .user-status {
     color: var(--lime-neon);
     font-size: 0.9rem;
-    margin-top: var(--spacing-sm);
     animation: blinker 1.5s infinite;
 }
 
@@ -221,54 +211,30 @@ body {
     text-decoration: none;
     display: block;
     padding: var(--spacing-xs) var(--spacing-sm);
-    border: 1px transparent dashed;
     transition: all 0.2s;
-    position: relative;
-}
-
-.nav-links a::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: rgba(255, 0, 127, 0.2);
-    transition: width 0.2s;
-    z-index: -1;
 }
 
 .nav-links a:hover, .nav-links a.active {
     background: var(--pink-neon);
     color: #fff;
-    border-color: #fff;
-    box-shadow: 0 0 8px var(--pink-neon);
-    padding-left: var(--spacing-md);
 }
 
-/* --- BUTTON & INTERACTIONS --- */
 .y2k-btn {
     background: #000;
     color: var(--lime-neon);
     border: 2px outset var(--cyan-neon);
     font-family: 'Press Start 2P', cursive;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     padding: var(--spacing-sm) var(--spacing-md);
     cursor: pointer;
     margin-top: var(--spacing-md);
     transition: all 0.2s;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    width: 100%;
 }
 
 .y2k-btn:hover {
     background: var(--pink-neon);
     color: #000;
-    box-shadow: 0 0 12px var(--pink-neon);
-}
-
-.y2k-btn:active {
-    border-style: inset;
-    transform: translate(1px, 1px);
 }
 
 .blink {
@@ -285,115 +251,25 @@ body {
     max-width: 1200px;
     margin: var(--spacing-xl) auto 0;
     font-size: 0.9rem;
-    padding-top: var(--spacing-lg);
-    border-top: 2px dashed var(--border-light);
-}
-
-/* --- FORMATTING ISI POSTINGAN MARKDOWN --- */
-.post-markdown-body {
-    line-height: 1.6;
-}
-
-.post-markdown-body h1 {
-    color: var(--cyan-neon);
-    font-size: 1.5rem;
-    margin-bottom: var(--spacing-md);
-    margin-top: var(--spacing-lg);
-    letter-spacing: 1px;
-}
-
-.post-markdown-body h1:first-child {
-    margin-top: 0;
-}
-
-.post-markdown-body h2, .post-markdown-body h3 {
-    color: var(--pink-neon);
-    margin-top: var(--spacing-lg);
-    margin-bottom: var(--spacing-md);
-    letter-spacing: 0.5px;
-}
-
-.post-markdown-body p {
-    margin-bottom: var(--spacing-md);
-    line-height: 1.6;
-}
-
-.post-markdown-body ul, .post-markdown-body ol {
-    margin-left: var(--spacing-lg);
-    margin-bottom: var(--spacing-md);
-    color: var(--lime-neon);
-}
-
-.post-markdown-body li {
-    margin-bottom: var(--spacing-xs);
-}
-
-.post-markdown-body blockquote {
-    border-left: 4px solid var(--pink-neon);
-    padding-left: var(--spacing-md);
-    margin: var(--spacing-md) 0;
-    color: #ffd700;
-    font-style: italic;
-    background: rgba(255, 0, 127, 0.1);
-    padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) var(--spacing-lg);
-}
-
-.post-markdown-body hr {
-    border: 0;
-    height: 1px;
-    background: var(--cyan-neon);
-    margin: var(--spacing-lg) 0;
-}
-
-.post-markdown-body img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: var(--spacing-lg) 0;
-    border: 2px solid var(--pink-neon);
-    box-shadow: 0 0 8px rgba(255, 0, 127, 0.4);
-}
-
-.post-markdown-body code {
-    background: #000;
-    color: var(--lime-neon);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border: 1px solid var(--cyan-neon);
-    font-family: 'VT323', monospace;
-}
-
-.post-markdown-body pre {
-    background: #000;
-    border: 2px solid var(--cyan-neon);
     padding: var(--spacing-md);
-    margin: var(--spacing-md) 0;
-    overflow-x: auto;
-    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
 }
 
-.post-markdown-body pre code {
-    border: none;
-    padding: 0;
-    background: transparent;
-    color: var(--lime-neon);
+/* --- MARKDOWN STYLING --- */
+.post-snippet h1, .post-snippet h2, .post-snippet h3 {
+    color: var(--cyan-neon);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+.post-snippet p {
+    margin-bottom: 10px;
 }
 
-/* --- RESPONSIVE ADJUSTMENTS --- */
 @media (max-width: 768px) {
-    .glitch-title {
-        font-size: 1.3rem;
-        text-shadow: 2px 2px var(--pink-neon);
+    .main-layout {
+        flex-direction: column;
     }
-    
-    .window-header {
-        font-size: 0.55rem;
-    }
-    
-    .window-content {
-        padding: var(--spacing-md);
-    }
-    
-    .post-markdown-body ul, .post-markdown-body ol {
-        margin-left: var(--spacing-md);
+    .sidebar {
+        position: static;
+        width: 100%;
     }
 }
