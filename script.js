@@ -4,6 +4,7 @@
 // ==========================================
 const postFiles = [
     'posts/post1.md'
+    'posts/post2.md'
 ];
 
 async function loadPosts() {
