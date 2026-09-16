@@ -245,3 +245,12 @@ body {
     background: var(--cyan-neon);
     margin: 15px 0;
 }
+
+.post-markdown-body img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px 0;
+    border: 2px solid var(--pink-neon);
+    box-shadow: 0 0 8px rgba(255, 0, 127, 0.4);
+}
