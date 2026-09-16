@@ -1,6 +1,8 @@
 journaling di Hari-Hari yang Terasa Bagai Time Skip
 *16 September 2026 | Kategori: Life*
 
+![https://i.imgur.com/NH64Xm5.jpeg](https://i.imgur.com/NH64Xm5.jpeg)
+
 Harusnya gw mulai journaling dari tanggal 12 kemarin, cuma entah bagaimana hidup gw berasa kena *time skip* gitu aja. Tahu-tahu udah pertengahan bulan.
 
 ---
