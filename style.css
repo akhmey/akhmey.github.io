@@ -54,8 +54,19 @@ img { display: block; max-width: 100%; border-radius: 14px; }
 .post-card-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 20px 24px 10px; }
 .post-tag { padding: 7px 10px; border-radius: 999px; background: rgba(154,107,61,.08); color: var(--accent); font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
 .post-date { color: var(--muted); font-size: .8rem; font-weight: 600; }
-/* Jangan memotong artikel panjang. Semua isi Markdown tetap dirender. */
-.post-card-body { padding: 0 24px 12px; max-height: none; overflow: visible; }
+
+.post-card-body {
+    padding: 0 24px 12px;
+    max-height: 420px;
+    overflow: hidden;
+    transition: max-height 0.35s ease, opacity 0.25s ease;
+}
+
+.post-card.is-expanded .post-card-body {
+    max-height: 2200px;
+    overflow: visible;
+}
+
 .post-card-body h1,.post-card-body h2,.post-card-body h3,.post-card-body h4 { margin: 1.4rem 0 .8rem; line-height: 1.2; color: var(--ink); }
 .post-card-title { margin: 0 0 12px !important; font: 600 clamp(2rem,2.7vw,3rem)/.98 'Cormorant Garamond',serif !important; letter-spacing: -.04em; }
 .post-card-body p,.post-card-body li { margin-bottom: 1rem; color: var(--muted); }
