@@ -15,3 +15,11 @@ Merupakan member pilihan kedua admin. Kalo Trisha sih jelas sangat menggemaskan 
 
 ### 3. Jemima Evodie
 Jemima atau Jemima Evodie Mayra Lijaya adalah member JKT48 trainee dari generasi 13. Kalo Jemima sih senyumnya nempel banget, sekali senyum kayak candu gitu wkwkw. Apalagi di MV terbaru JKT48 trainee "Bagai Cinta Pertama".
+
+### 4. Cornelia Vanisa
+Oniel atau Cornelia Syafa Vanisa, merupakan member JKT48 team passion dari generasi 8. kita kesampingkan dulu talenta oniel sebagai pelawak handal.
+
+menurut admin onile itu sangat cantik dan anggun kalo jokes bapak-bapaknya di hilangkan. tapi jagan deh oniel tetap cantik kok walapun jokesnya bapak-bapak. 
+
+### 5. Nina Tutachia
+Nachia atau Nina Tutachia Browning Chapman.. lucuk banget namanya wehh. jujur cantik ya nachia. kayak pernah lihat gtu di tipi tipi. ternyata emg iya dia sering jadi pemain sinetrron di tipi. apalagi cara ngomongnya kek bule British. 
