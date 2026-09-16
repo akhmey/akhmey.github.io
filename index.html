@@ -9,21 +9,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
     
-    <!-- PISAHKAN DUA BARIS INI -->
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 
-    <!-- Efek Teks Berjalan (Marquee) khas Y2K -->
+    <!-- Marquee Y2K -->
     <div class="marquee-container">
         <p class="marquee-text">
-            ✦ WELCOME TO AKHMEY'S DIGITAL REALM ✦ SYSTEM STATUS: ONLINE ✦ BEST VIEWED IN 800x600 ✦ WELCOME TO THE FUTURE 2000 ✦
+            ✦ WELCOME TO AKHMEY'S DIGITAL REALM ✦ SYSTEM STATUS: ONLINE ✦ COMPACT MODE ACTIVE ✦ WELCOME TO THE FUTURE 2000 ✦
         </p>
     </div>
 
     <div class="main-layout">
-        <!-- Sidebar Navigation -->
+        <!-- Sidebar Navigation (Compact & Fixed on desktop) -->
         <aside class="window-box sidebar">
             <div class="window-header">
                 <span>[NAV.EXE]</span>
@@ -37,7 +36,7 @@
                 <nav>
                     <ul class="nav-links">
                         <li><a href="#home" class="active">>> Home</a></li>
-                        <li><a href="#posts-container">>> Blog Entries</a></li>
+                        <li><a href="#posts-container">>> Blog Logs</a></li>
                     </ul>
                 </nav>
             </div>
@@ -56,20 +55,21 @@
                     <h1 class="glitch-title">AKHMEY.LOG</h1>
                     <p class="subtitle">Exploring the cyber frontier, one line of code at a time...</p>
                     <hr class="pixel-hr">
-                    <p>Selamat datang di blog pribadi gue. Tempat berbagi eksperimen visual, koding, game retro, dan catatan dunia digital.</p>
+                    <p>Selamat datang di blog pribadi gue. Navigasi telah dioptimalkan agar lebih ringkas dan bebas scroll panjang!</p>
                 </div>
             </section>
 
-            <!-- CONTAINER POSTINGAN OTOMATIS -->
-            <div id="posts-container">
-                <!-- Postingan Markdown akan otomatis muncul di sini! -->
+            <!-- CONTAINER POSTINGAN (GRID / COMPACT CARDS) -->
+            <div id="posts-container" class="posts-grid">
+                <!-- Postingan Markdown otomatis dimuat dalam card ringkas -->
             </div>
 
         </main>
     </div>
 
-    <!-- Footer -->
+    <!-- Back to Top & Footer -->
     <footer class="window-box footer">
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="y2k-btn" style="margin-bottom: 15px;">▲ BACK TO TOP</button>
         <p>© 2000-2026 AKHMEY. ALL RIGHTS RESERVED. <span class="blink">_</span></p>
     </footer>
 
