@@ -118,6 +118,47 @@ function applyTheme(isDark) {
     }
 }
 
+// Header menghilang ketika scroll ke bawah dan muncul kembali saat scroll ke atas.
+// Style disuntikkan dari sini agar tidak perlu mengubah layout/header yang sudah ada.
+function setupAutoHideHeader() {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+
+    const headerStyle = document.createElement('style');
+    headerStyle.textContent = `
+        .site-header {
+            transition: transform .28s ease, opacity .28s ease, box-shadow .28s ease;
+            will-change: transform;
+        }
+        .site-header.header-hidden {
+            transform: translateY(calc(-100% - 28px));
+            opacity: 0;
+            pointer-events: none;
+        }
+    `;
+    document.head.appendChild(headerStyle);
+
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const updateHeader = () => {
+        const currentScrollY = window.scrollY;
+        const movingDown = currentScrollY > lastScrollY;
+        const shouldHide = movingDown && currentScrollY > header.offsetHeight + 40;
+
+        header.classList.toggle('header-hidden', shouldHide);
+        lastScrollY = Math.max(currentScrollY, 0);
+        ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(updateHeader);
+            ticking = true;
+        }
+    }, { passive: true });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-tab]').forEach((element) => {
         element.addEventListener('click', () => setActiveTab(element.dataset.tab));
@@ -126,4 +167,5 @@ document.addEventListener('DOMContentLoaded', () => {
     const initialTab = location.hash.slice(1);
     setActiveTab(initialTab, false);
     setupTheme();
+    setupAutoHideHeader();
 });
