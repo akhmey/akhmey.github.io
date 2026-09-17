@@ -18,14 +18,21 @@ function removeMainTitle(markdown) {
 
 function showReader(post, markdown) {
   const reader = document.getElementById('reader-view');
+  
   document.getElementById('reader-category').textContent = post.category;
   document.getElementById('reader-date').textContent = post.date;
   document.getElementById('reader-title').textContent = post.title;
   document.getElementById('reader-content').innerHTML = marked.parse(removeMainTitle(markdown));
-  document.getElementById('portal-view').hidden = true;
-  document.querySelector('.portal-header').hidden = true;
-  document.querySelector('.notice-bar').hidden = true;
+
+  // SEMBUNYIKAN TOTAL ELEMEN PORTAL AGAR BACAAN LANGSUNG NAIK KE ATAS
+  document.getElementById('portal-view').style.display = 'none';
+  if (document.querySelector('.portal-header')) document.querySelector('.portal-header').style.display = 'none';
+  if (document.querySelector('.notice-bar')) document.querySelector('.notice-bar').style.display = 'none';
+  if (document.querySelector('.utility-bar')) document.querySelector('.utility-bar').style.display = 'none';
+
+  // TAMPILKAN READER ROOM
   reader.hidden = false;
+  reader.style.display = 'block';
   window.scrollTo(0, 0);
 }
 
@@ -35,6 +42,16 @@ function openArticleInNewTab(file) {
 }
 
 function closeArticle() {
+  // TAMPILKAN KEMBALI ELEMEN PORTAL
+  document.getElementById('portal-view').style.display = 'grid';
+  if (document.querySelector('.portal-header')) document.querySelector('.portal-header').style.display = 'block';
+  if (document.querySelector('.notice-bar')) document.querySelector('.notice-bar').style.display = 'block';
+  if (document.querySelector('.utility-bar')) document.querySelector('.utility-bar').style.display = 'flex';
+
+  const reader = document.getElementById('reader-view');
+  reader.hidden = true;
+  reader.style.display = 'none';
+
   window.location.href = `${window.location.pathname}#journal`;
 }
 
