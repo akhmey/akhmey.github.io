@@ -30,15 +30,10 @@
 
     <div class="notice-bar">★ Latest update: welcome to AKHMEY's little corner of the internet ★ &nbsp; <a href="#journal">See all entries →</a></div>
 
-    <main class="portal-grid">
+    <main class="portal-grid" id="portal-view">
       <aside class="left-column">
-        <section class="portal-panel link-panel">
-          <h2>QUICK MENU</h2>
-          <a href="#journal">▸ Semua tulisan</a><a href="#journal">▸ Catatan harian</a><a href="#journal">▸ Teknologi</a><a href="#journal">▸ Hiburan</a><a href="#about">▸ Tentang blog</a>
-        </section>
-        <section class="portal-panel today-panel">
-          <h2>AKHMEY STATUS</h2><div class="status-dot">● ONLINE</div><p>Tempat buat nyatet apa pun yang lagi kepikiran.</p><div class="mini-rule"></div><small>Updated: 17 September 2026</small>
-        </section>
+        <section class="portal-panel link-panel"><h2>QUICK MENU</h2><a href="#journal">▸ Semua tulisan</a><a href="#journal">▸ Catatan harian</a><a href="#journal">▸ Teknologi</a><a href="#journal">▸ Hiburan</a><a href="#about">▸ Tentang blog</a></section>
+        <section class="portal-panel today-panel"><h2>AKHMEY STATUS</h2><div class="status-dot">● ONLINE</div><p>Tempat buat nyatet apa pun yang lagi kepikiran.</p><div class="mini-rule"></div><small>Updated: 17 September 2026</small></section>
         <section class="portal-panel link-panel"><h2>LINKS</h2><a href="#home">▸ Home</a><a href="#journal">▸ Journal</a><a href="#about">▸ About me</a><a href="https://github.com/akhmey">▸ GitHub</a></section>
       </aside>
 
@@ -52,6 +47,14 @@
         <section class="portal-panel login-panel"><h2>WELCOME BACK</h2><p>Ini bukan portal berita. Ini cuma blog kecil yang isinya bisa berubah kapan saja.</p><a class="panel-button" href="#about">Kenalan lebih jauh</a></section>
         <section class="portal-panel facts-panel" id="about"><h2>ABOUT THIS PLACE</h2><p><b>AKHMEY</b> menulis tentang hidup, teknologi, hiburan, dan hal random yang terasa menarik.</p><div class="fact-line"><span>Format</span><b>Markdown notes</b></div><div class="fact-line"><span>Base</span><b>Indonesia</b></div></section>
       </aside>
+    </main>
+
+    <main class="reader-view" id="reader-view" hidden>
+      <div class="reader-toolbar"><button id="back-to-portal" type="button">← Back to journal</button><span>AKHMEY / reading room</span></div>
+      <article class="reader-article">
+        <header class="reader-header"><span id="reader-category"></span><time id="reader-date"></time><h1 id="reader-title"></h1></header>
+        <div class="reader-content" id="reader-content"></div>
+      </article>
     </main>
 
     <footer class="portal-footer"><span>© 2026 AKHMEY</span><span>Built with Markdown · <a href="#home">Back to top ↑</a></span></footer>
