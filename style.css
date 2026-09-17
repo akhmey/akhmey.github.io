@@ -91,12 +91,20 @@ img { display: block; max-width: 100%; border-radius: 14px; }
 .about-main { background: var(--panel); }
 .about-card h1 { margin: 12px 0 16px; font-size: clamp(2.2rem, 4vw, 4rem); line-height: .98; letter-spacing: -.06em; }
 .about-card p { margin-bottom: 14px; }
-.about-facts { background: var(--ink); color: var(--bg); }
-.about-facts .eyebrow { color: var(--sky); }
-.about-facts ul { list-style: none; margin-top: 18px; }
-.about-facts li { display: flex; flex-direction: column; gap: 2px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.16); }
-.about-facts li span { color: rgba(255,255,255,.62); font-size: .8rem; }
-.about-facts li strong { font-size: .95rem; }
+.about-facts { background: var(--panel); color: var(--ink); }
+.facts-heading { display: flex; align-items: center; gap: 12px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.facts-heading .eyebrow { margin: 0; }
+.facts-heading h2 { margin-top: 3px; font-size: 1.35rem; letter-spacing: -.03em; }
+.facts-icon { display: grid; place-items: center; width: 42px; height: 42px; flex: 0 0 42px; border-radius: 13px; background: linear-gradient(135deg, var(--sky), var(--lavender)); color: #27334a; font-size: 1.25rem; }
+.facts-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.fact-item { display: flex; align-items: flex-start; gap: 10px; min-width: 0; padding: 13px 12px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel-strong); transition: transform .2s ease, border-color .2s ease; }
+.fact-item:hover { transform: translateY(-2px); border-color: var(--sky); }
+.fact-symbol { display: grid; place-items: center; width: 30px; height: 30px; flex: 0 0 30px; border-radius: 9px; background: var(--panel); font-size: .95rem; }
+.fact-copy { display: flex; min-width: 0; flex-direction: column; line-height: 1.25; }
+.fact-copy small { color: var(--muted); font-size: .72rem; }
+.fact-copy strong { margin-top: 3px; font-size: .86rem; overflow-wrap: anywhere; }
+.about-facts .eyebrow { color: var(--muted); }
 .site-footer { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--line); text-align: center; color: var(--muted); font-size: .85rem; }
 .error-card { border-color: #e57373; }
 @media (max-width: 800px) { .site-shell { width: min(100% - 20px, 680px); padding-top: 16px; } .site-header { flex-direction: column; align-items: flex-start; position: static; } .main-nav { width: 100%; } .hero, .about-layout { grid-template-columns: 1fr; } .post-card-header, .post-card-body, .post-card-footer { padding-left: 18px; padding-right: 18px; } }
+@media (max-width: 480px) { .facts-list { grid-template-columns: 1fr; } }
