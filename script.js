@@ -1,4 +1,4 @@
-const postFiles = ['posts/post1.md', 'posts/post2.md'];
+const postFiles = ['posts/post1.md', 'posts/post2.md', 'posts/post3.md'];
 
 function escapeHTML(value) {
   return String(value).replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
