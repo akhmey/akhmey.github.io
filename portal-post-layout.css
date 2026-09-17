@@ -1,0 +1,17 @@
+/* Article cards: thumbnail on the left, summary on the right. */
+.post-card-row { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 13px; padding: 11px 13px 13px; align-items: start; }
+.post-thumbnail { min-width: 0; }
+.post-preview-image, .post-preview-placeholder { display: block; width: 150px; height: 112px; object-fit: contain; object-position: center; background: #f4f6fa; border: 1px solid var(--line); }
+.post-preview-placeholder { display: grid; place-items: center; color: var(--blue); font-size: 11px; font-weight: bold; letter-spacing: .08em; }
+.post-summary { min-width: 0; }
+.post-summary .post-card-title { margin: 0 0 7px; color: var(--blue-dark); font-size: 18px; line-height: 1.25; }
+.post-excerpt { margin: 0 0 11px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.post-summary .read-more-btn { display: inline-block; }
+.post-card-footer { display: none; }
+
+@media (max-width: 480px) {
+  .post-card-row { grid-template-columns: 105px minmax(0, 1fr); gap: 10px; padding: 9px 10px 11px; }
+  .post-preview-image, .post-preview-placeholder { width: 105px; height: 86px; }
+  .post-summary .post-card-title { font-size: 16px; }
+  .post-excerpt { font-size: 11px; }
+}

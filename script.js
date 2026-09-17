@@ -1,7 +1,7 @@
 const postFiles = ['posts/post1.md', 'posts/post2.md'];
 
 function escapeHTML(value) {
-  return value.replace(/[&<>'"]/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+  return String(value).replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
 }
 
 function parsePost(markdown) {
@@ -16,7 +16,7 @@ function removeMainTitle(markdown) {
   return markdown.replace(/^#\s+[^\n]+\n+/, '').trim();
 }
 
-function renderArticle(post, markdown) {
+function showReader(post, markdown) {
   const reader = document.getElementById('reader-view');
   document.getElementById('reader-category').textContent = post.category;
   document.getElementById('reader-date').textContent = post.date;
@@ -26,22 +26,38 @@ function renderArticle(post, markdown) {
   document.querySelector('.portal-header').hidden = true;
   document.querySelector('.notice-bar').hidden = true;
   reader.hidden = false;
-  window.scrollTo({top: 0, behavior: 'smooth'});
-  history.pushState({reader: true}, '', '#article');
+  window.scrollTo(0, 0);
+}
+
+function openArticleInNewTab(file) {
+  const url = `${window.location.origin}${window.location.pathname}?article=${encodeURIComponent(file)}`;
+  window.open(url, '_blank', 'noopener');
 }
 
 function closeArticle() {
-  document.getElementById('reader-view').hidden = true;
-  document.getElementById('portal-view').hidden = false;
-  document.querySelector('.portal-header').hidden = false;
-  document.querySelector('.notice-bar').hidden = false;
-  history.pushState({}, '', '#journal');
-  window.scrollTo({top: 0, behavior: 'smooth'});
+  window.location.href = `${window.location.pathname}#journal`;
+}
+
+async function loadArticleFromQuery() {
+  const file = new URLSearchParams(window.location.search).get('article');
+  if (!file || !postFiles.includes(file) || typeof marked === 'undefined') return false;
+
+  try {
+    const response = await fetch(file);
+    if (!response.ok) throw new Error(file);
+    const markdown = await response.text();
+    showReader(parsePost(markdown), markdown);
+    return true;
+  } catch (error) {
+    console.error('Gagal membuka artikel:', error);
+    return false;
+  }
 }
 
 async function loadPosts() {
   const container = document.getElementById('posts-container');
   if (!container || typeof marked === 'undefined') return;
+
   container.innerHTML = '<div class="loading">Loading journal...</div>';
   const cards = [];
 
@@ -51,8 +67,26 @@ async function loadPosts() {
       if (!response.ok) throw new Error(file);
       const markdown = await response.text();
       const post = parsePost(markdown);
-      const previewImage = post.image ? `<img class="post-preview-image" src="${escapeHTML(post.image)}" alt="Thumbnail for ${escapeHTML(post.title)}" loading="lazy">` : '';
-      cards.push(`<article class="post-card"><div class="post-card-header"><span class="post-tag">${escapeHTML(post.category)}</span><time class="post-date">${escapeHTML(post.date)}</time></div><div class="post-card-body">${previewImage}<h2 class="post-card-title">${escapeHTML(post.title)}</h2><p class="post-excerpt">Open the clean reading view to read this entry.</p></div><div class="post-card-footer"><button class="read-more-btn" type="button" data-file="${escapeHTML(file)}">Read article →</button></div></article>`);
+      const thumbnail = post.image
+        ? `<img class="post-preview-image" src="${escapeHTML(post.image)}" alt="Thumbnail: ${escapeHTML(post.title)}" loading="lazy">`
+        : '<div class="post-preview-placeholder">AKHMEY</div>';
+
+      cards.push(`
+        <article class="post-card">
+          <div class="post-card-header">
+            <span class="post-tag">${escapeHTML(post.category)}</span>
+            <time class="post-date">${escapeHTML(post.date)}</time>
+          </div>
+          <div class="post-card-row">
+            <div class="post-thumbnail">${thumbnail}</div>
+            <div class="post-summary">
+              <h2 class="post-card-title">${escapeHTML(post.title)}</h2>
+              <p class="post-excerpt">Catatan pribadi, cerita, dan hal-hal random dari AKHMEY.</p>
+              <button class="read-more-btn" type="button" data-file="${escapeHTML(file)}">Baca artikel ↗</button>
+            </div>
+          </div>
+        </article>
+      `);
     } catch (error) {
       console.error('Gagal memuat post:', error);
       cards.push(`<article class="post-card error-card"><div class="post-card-body">Post gagal dimuat: ${escapeHTML(file)}</div></article>`);
@@ -61,21 +95,16 @@ async function loadPosts() {
 
   container.innerHTML = cards.join('');
   container.querySelectorAll('.read-more-btn').forEach((button) => {
-    button.addEventListener('click', async () => {
-      const response = await fetch(button.dataset.file);
-      const markdown = await response.text();
-      renderArticle(parsePost(markdown), markdown);
-    });
+    button.addEventListener('click', () => openArticleInNewTab(button.dataset.file));
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('back-to-portal').addEventListener('click', closeArticle);
-  loadPosts();
-});
+document.addEventListener('DOMContentLoaded', async () => {
+  const backButton = document.getElementById('back-to-portal');
+  if (backButton) backButton.addEventListener('click', closeArticle);
 
-window.addEventListener('popstate', () => {
-  if (location.hash !== '#article') closeArticle();
+  const openedArticle = await loadArticleFromQuery();
+  if (!openedArticle) loadPosts();
 });
 
 let originalTitle = document.title;
