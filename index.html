@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AKHMEY — personal journal and blog of thoughts, notes, and everyday observations.">
-    <title>AKHMEY — Journal</title>
+    <meta name="description" content="AKHMEY — blog pribadi, catatan harian, dan pemikiran random.">
+    <title>AKHMEY | daily notes</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-    <div class="page-shell">
+    <div class="site-shell">
         <header class="site-header">
-            <div class="brand-wrap">
-                <div class="brand-mark">A</div>
+            <div class="brand">
+                <span class="brand-mark">A</span>
                 <div class="brand-copy">
-                    <p class="brand-kicker">personal journal</p>
-                    <h1 class="brand-name">AKHMEY</h1>
+                    <span class="brand-kicker">daily notes</span>
+                    <h1>AKHMEY</h1>
                 </div>
             </div>
 
@@ -30,38 +30,36 @@
             </nav>
         </header>
 
-        <main class="main-content">
+        <main class="main-wrap">
             <section class="hero" id="home">
                 <div class="hero-copy">
-                    <p class="eyebrow">notes from a living mind</p>
-                    <h2>Writing about the things that move me.</h2>
+                    <p class="eyebrow">nyatet yang terasa</p>
+                    <h2>Catatan hidup, random, dan gak selalu terlalu serius.</h2>
                     <p>
-                        Ini adalah ruang pribadi untuk menulis apa pun yang ingin saya catat: pemikiran,
-                        pengalaman harian, observasi kecil, dan cerita yang mungkin tak perlu terlalu serius,
-                        tapi tetap punya arti.
+                        Ini tempat buat nulis pemikiran, pengalaman, hal kecil yang menarik, dan cerita yang
+                        kadang terasa lucu tapi punya makna.
                     </p>
 
-                    <div class="hero-meta">
+                    <div class="hero-tags">
                         <span>📍 Indonesia</span>
                         <span>✍️ Journal</span>
-                        <span>🌿 Life notes</span>
+                        <span>🎧 Life notes</span>
                     </div>
                 </div>
 
                 <aside class="profile-card" id="about">
                     <p class="card-label">About</p>
-                    <h3>AKHMEY</h3>
+                    <h3>Si pemburu cerita.</h3>
                     <p>
-                        Saya menulis untuk mengingat, menimbang, dan membagikan sudut pandang tentang
-                        hidup, teknologi, serta segala hal yang terasa nyata di sekitar saya.
+                        Sering ngulik hal kecil, nulis buat mengingat, dan ikut menikmati hidup dengan cara yang santai.
                     </p>
                 </aside>
             </section>
 
-            <section class="posts-section">
-                <div class="section-heading">
-                    <p class="eyebrow">latest entries</p>
-                    <h3>Recent notes</h3>
+            <section class="entries-wrap">
+                <div class="section-label">
+                    <p class="eyebrow">recent entries</p>
+                    <h3>Latest notes</h3>
                 </div>
 
                 <div id="posts-container" class="posts-grid" aria-live="polite"></div>
@@ -69,7 +67,7 @@
         </main>
 
         <footer class="site-footer">
-            <p>© 2026 AKHMEY — a journal of random thoughts, stories, and quiet observations.</p>
+            <p>© 2026 AKHMEY — daily notes, random thoughts, and small stories.</p>
         </footer>
     </div>
 
