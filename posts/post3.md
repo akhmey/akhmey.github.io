@@ -1,5 +1,6 @@
 # Tenggelam Perlahan Tanpa Ada yang Melihatmu
-
+[![IMG-20260917-230533.jpg](https://i.postimg.cc/htCzH4vX/IMG-20260917-230533.jpg)](https://postimg.cc/YvWCFH17)
+---
 Dunia ini berat banget ya, apalagi buat orang yang mentalnya sudah hancur dari lama. Ibarat kita sedang tenggelam di tengah lautan, kita tidak tahu apakah usaha kita berenang agar tidak tenggelam itu sia-sia atau tidak.
 
 Bertahun-tahun *survive* dengan segala cara, kita coba berenang ke segala arah tetapi tidak pernah sampai ke daratan. Kita berusaha untuk *get up* dan pergi terapi ke psikolog serta psikiater, tetapi tidak kunjung menemukan titik terang dari problematika kita.
