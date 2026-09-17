@@ -15,54 +15,82 @@
 <body>
     <div class="site-shell">
         <header class="site-header">
-            <div class="brand">
+            <a class="brand" href="#home" data-tab="home" aria-label="AKHMEY home">
                 <span class="brand-mark">A</span>
-                <div class="brand-copy">
+                <span class="brand-copy">
                     <span class="brand-kicker">daily notes</span>
-                    <h1>AKHMEY</h1>
-                </div>
-            </div>
+                    <strong>AKHMEY</strong>
+                </span>
+            </a>
 
             <nav class="main-nav" aria-label="Main navigation">
-                <a href="#home" class="active">Home</a>
-                <a href="#posts-container">Journal</a>
-                <a href="#about">About</a>
+                <button class="tab-link active" type="button" data-tab="home">Home</button>
+                <button class="tab-link" type="button" data-tab="journal">Journal</button>
+                <button class="tab-link" type="button" data-tab="about">About</button>
+                <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
             </nav>
         </header>
 
         <main class="main-wrap">
-            <section class="hero" id="home">
-                <div class="hero-copy">
-                    <p class="eyebrow">nyatet yang terasa</p>
-                    <h2>Catatan hidup, random, dan gak selalu terlalu serius.</h2>
-                    <p>
-                        Ini tempat buat nulis pemikiran, pengalaman, hal kecil yang menarik, dan cerita yang
-                        kadang terasa lucu tapi punya makna.
-                    </p>
-
-                    <div class="hero-tags">
-                        <span>📍 Indonesia</span>
-                        <span>✍️ Journal</span>
-                        <span>🎧 Life notes</span>
+            <section class="tab-panel active" data-panel="home" id="home-panel" aria-labelledby="home-tab">
+                <div class="hero">
+                    <div class="hero-copy">
+                        <p class="eyebrow">nyatet yang terasa</p>
+                        <h1>Catatan hidup, random, dan gak selalu terlalu serius.</h1>
+                        <p>
+                            Ini tempat buat nulis pemikiran, pengalaman, hal kecil yang menarik, dan cerita yang
+                            kadang terasa lucu tapi punya makna.
+                        </p>
+                        <div class="hero-tags">
+                            <span>📍 Indonesia</span>
+                            <span>✍️ Journal</span>
+                            <span>🎧 Life notes</span>
+                        </div>
+                        <button class="primary-button" type="button" data-tab="journal">Lihat journal →</button>
+                    </div>
+                    <div class="home-note">
+                        <span class="sticker">new</span>
+                        <p class="note-label">currently writing about</p>
+                        <h2>hal-hal kecil yang kepikiran terlalu lama.</h2>
+                        <p>Blog ini bebas. Bisa berisi cerita, opini, review, atau apa pun yang lagi ingin ditulis.</p>
                     </div>
                 </div>
-
-                <aside class="profile-card" id="about">
-                    <p class="card-label">About</p>
-                    <h3>Si pemburu cerita.</h3>
-                    <p>
-                        Sering ngulik hal kecil, nulis buat mengingat, dan ikut menikmati hidup dengan cara yang santai.
-                    </p>
-                </aside>
             </section>
 
-            <section class="entries-wrap">
-                <div class="section-label">
+            <section class="tab-panel" data-panel="journal" id="journal-panel" aria-labelledby="journal-tab" hidden>
+                <div class="section-heading">
                     <p class="eyebrow">recent entries</p>
-                    <h3>Latest notes</h3>
+                    <h1>Latest notes</h1>
+                    <p>Arsip tulisan random yang dikumpulkan satu per satu.</p>
                 </div>
-
                 <div id="posts-container" class="posts-grid" aria-live="polite"></div>
+            </section>
+
+            <section class="tab-panel" data-panel="about" id="about-panel" aria-labelledby="about-tab" hidden>
+                <div class="about-layout">
+                    <div class="about-card about-main">
+                        <p class="eyebrow">a little about this place</p>
+                        <h1>Ruang kecil buat cerita yang gak harus sempurna.</h1>
+                        <p>
+                            Saya menulis untuk mengingat, memahami sesuatu, dan kadang cuma karena ada hal random
+                            yang ingin dibagikan. Isinya bisa berubah-ubah: teknologi, kehidupan, hiburan, opini,
+                            atau cerita kecil dari hari biasa.
+                        </p>
+                        <p>
+                            Tidak ada niche yang terlalu ketat di sini. Yang penting ditulis dengan jujur dan terasa
+                            seperti suara sendiri.
+                        </p>
+                    </div>
+                    <div class="about-card about-facts">
+                        <p class="eyebrow">quick facts</p>
+                        <ul>
+                            <li><span>Based in</span><strong>Indonesia</strong></li>
+                            <li><span>Writing about</span><strong>Anything interesting</strong></li>
+                            <li><span>Format</span><strong>Markdown notes</strong></li>
+                            <li><span>Status</span><strong>Still figuring it out</strong></li>
+                        </ul>
+                    </div>
+                </div>
             </section>
         </main>
 

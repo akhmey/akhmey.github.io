@@ -1,19 +1,9 @@
-const postFiles = [
-    'posts/post1.md',
-    'posts/post2.md'
-];
+const postFiles = ['posts/post1.md', 'posts/post2.md'];
 
 function parseMarkdownPost(markdownText) {
-    const titleMatch = markdownText.match(/^#\s+(.+)$/m)
-        || markdownText.match(/^##\s+(.+)$/m)
-        || markdownText.match(/^###\s+(.+)$/m);
-
-    const dateMatch = markdownText.match(/\b\d{1,2}\s+[A-Za-z]+\s+\d{4}\b/)
-        || markdownText.match(/\b\d{4}-\d{2}-\d{2}\b/);
-
-    const categoryMatch = markdownText.match(/Kategori:\s*([^\n]+)/i)
-        || (markdownText.toLowerCase().includes('by admin') ? ['','Journal'] : null)
-        || (markdownText.toLowerCase().includes('life') ? ['','Life'] : null);
+    const titleMatch = markdownText.match(/^#\s+(.+)$/m) || markdownText.match(/^##\s+(.+)$/m) || markdownText.match(/^###\s+(.+)$/m);
+    const dateMatch = markdownText.match(/\b\d{1,2}\s+[A-Za-z]+\s+\d{4}\b/) || markdownText.match(/\b\d{4}-\d{2}-\d{2}\b/);
+    const categoryMatch = markdownText.match(/Kategori:\s*([^\n]+)/i) || (markdownText.toLowerCase().includes('by admin') ? ['', 'Journal'] : null) || (markdownText.toLowerCase().includes('life') ? ['', 'Life'] : null);
 
     return {
         title: titleMatch ? titleMatch[1].trim() : 'Untitled note',
@@ -31,18 +21,15 @@ async function loadPosts() {
     if (!container) return;
 
     container.innerHTML = '<article class="post-card"><div class="post-card-body"><p>Loading notes...</p></div></article>';
-
     const postsHTML = [];
 
     for (const file of postFiles) {
         try {
             const response = await fetch(file);
-            if (!response.ok) throw new Error('File not found');
-
+            if (!response.ok) throw new Error(`Could not load ${file}`);
             const markdownText = await response.text();
             const { title, date, category } = parseMarkdownPost(markdownText);
-            const cleanedMarkdown = stripLeadingTitle(markdownText);
-            const htmlContent = marked.parse(cleanedMarkdown || markdownText);
+            const htmlContent = marked.parse(stripLeadingTitle(markdownText) || markdownText);
 
             postsHTML.push(`
                 <article class="post-card">
@@ -65,9 +52,7 @@ async function loadPosts() {
     }
 
     container.innerHTML = postsHTML.join('');
-
-    const buttons = document.querySelectorAll('.read-more-btn');
-    buttons.forEach((button) => {
+    container.querySelectorAll('.read-more-btn').forEach((button) => {
         button.addEventListener('click', () => {
             const card = button.closest('.post-card');
             const expanded = card.classList.toggle('is-expanded');
@@ -76,12 +61,51 @@ async function loadPosts() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', loadPosts);
-
-const navLinks = document.querySelectorAll('.main-nav a');
-navLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-        navLinks.forEach((item) => item.classList.remove('active'));
-        link.classList.add('active');
+function setActiveTab(tabName, updateHash = true) {
+    document.querySelectorAll('.tab-link').forEach((button) => {
+        const isActive = button.dataset.tab === tabName;
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-selected', String(isActive));
     });
+
+    document.querySelectorAll('.tab-panel').forEach((panel) => {
+        const isActive = panel.dataset.panel === tabName;
+        panel.classList.toggle('active', isActive);
+        panel.hidden = !isActive;
+    });
+
+    if (tabName === 'journal' && !document.querySelector('#posts-container .post-card')) loadPosts();
+    if (updateHash) history.replaceState(null, '', `#${tabName}`);
+}
+
+function setupTheme() {
+    const savedTheme = localStorage.getItem('akhmey-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = savedTheme ? savedTheme === 'dark' : prefersDark;
+    document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+    updateThemeButton(isDark);
+
+    document.querySelector('.theme-toggle').addEventListener('click', () => {
+        const nextDark = document.documentElement.dataset.theme !== 'dark';
+        document.documentElement.dataset.theme = nextDark ? 'dark' : 'light';
+        localStorage.setItem('akhmey-theme', nextDark ? 'dark' : 'light');
+        updateThemeButton(nextDark);
+    });
+}
+
+function updateThemeButton(isDark) {
+    const button = document.querySelector('.theme-toggle');
+    if (!button) return;
+    button.textContent = isDark ? '☀️' : '🌙';
+    button.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-tab]').forEach((element) => {
+        element.addEventListener('click', () => setActiveTab(element.dataset.tab));
+    });
+
+    const initialTab = ['home', 'journal', 'about'].includes(location.hash.slice(1)) ? location.hash.slice(1) : 'home';
+    setActiveTab(initialTab, false);
+    setupTheme();
 });
