@@ -1,122 +1,61 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AKHMEY — blog pribadi, catatan harian, dan pemikiran random.">
-    <title>AKHMEY | daily notes</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AKHMEY daily notes — blog pribadi dengan catatan random, cerita, dan tulisan harian.">
+  <title>AKHMEY | daily notes</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-    <div class="site-shell">
-        <header class="site-header">
-            <a class="brand" href="#home" data-tab="home" aria-label="AKHMEY home">
-                <span class="brand-mark">A</span>
-                <span class="brand-copy">
-                    <span class="brand-kicker">daily notes</span>
-                    <strong>AKHMEY</strong>
-                </span>
-            </a>
-
-            <nav class="main-nav" aria-label="Main navigation">
-                <button class="tab-link active" type="button" data-tab="home">Home</button>
-                <button class="tab-link" type="button" data-tab="journal">Journal</button>
-                <button class="tab-link" type="button" data-tab="about">About</button>
-                <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
-            </nav>
-        </header>
-
-        <main class="main-wrap">
-            <section class="tab-panel active" data-panel="home" id="home-panel" aria-labelledby="home-tab">
-                <div class="hero">
-                    <div class="hero-copy">
-                        <p class="eyebrow">nyatet yang terasa</p>
-                        <h1>Catatan hidup, random, dan gak selalu terlalu serius.</h1>
-                        <p>
-                            Ini tempat buat nulis pemikiran, pengalaman, hal kecil yang menarik, dan cerita yang
-                            kadang terasa lucu tapi punya makna.
-                        </p>
-                        <div class="hero-tags">
-                            <span>📍 Indonesia</span>
-                            <span>✍️ Journal</span>
-                            <span>🎧 Life notes</span>
-                        </div>
-                        <button class="primary-button" type="button" data-tab="journal">Lihat journal →</button>
-                    </div>
-                    <div class="home-note">
-                        <span class="sticker">new</span>
-                        <p class="note-label">currently writing about</p>
-                        <h2>hal-hal kecil yang kepikiran terlalu lama.</h2>
-                        <p>Blog ini bebas. Bisa berisi cerita, opini, review, atau apa pun yang lagi ingin ditulis.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="tab-panel" data-panel="journal" id="journal-panel" aria-labelledby="journal-tab" hidden>
-                <div class="section-heading">
-                    <p class="eyebrow">recent entries</p>
-                    <h1>Latest notes</h1>
-                    <p>Arsip tulisan random yang dikumpulkan satu per satu.</p>
-                </div>
-                <div id="posts-container" class="posts-grid" aria-live="polite"></div>
-            </section>
-
-            <section class="tab-panel" data-panel="about" id="about-panel" aria-labelledby="about-tab" hidden>
-                <div class="about-layout">
-                    <div class="about-card about-main">
-                        <p class="eyebrow">a little about this place</p>
-                        <h1>Ruang kecil buat cerita yang gak harus sempurna.</h1>
-                        <p>
-                            Saya menulis untuk mengingat, memahami sesuatu, dan kadang cuma karena ada hal random
-                            yang ingin dibagikan. Isinya bisa berubah-ubah: teknologi, kehidupan, hiburan, opini,
-                            atau cerita kecil dari hari biasa.
-                        </p>
-                        <p>
-                            Tidak ada niche yang terlalu ketat di sini. Yang penting ditulis dengan jujur dan terasa
-                            seperti suara sendiri.
-                        </p>
-                    </div>
-                    <div class="about-card about-facts">
-                        <div class="facts-heading">
-                            <span class="facts-icon">✦</span>
-                            <div>
-                                <p class="eyebrow">quick facts</p>
-                                <h2>Currently me</h2>
-                            </div>
-                        </div>
-                        <div class="facts-list">
-                            <div class="fact-item">
-                                <span class="fact-symbol">📍</span>
-                                <span class="fact-copy"><small>Based in</small><strong>Indonesia</strong></span>
-                            </div>
-                            <div class="fact-item">
-                                <span class="fact-symbol">💭</span>
-                                <span class="fact-copy"><small>Writing about</small><strong>Anything interesting</strong></span>
-                            </div>
-                            <div class="fact-item">
-                                <span class="fact-symbol">📝</span>
-                                <span class="fact-copy"><small>Format</small><strong>Markdown notes</strong></span>
-                            </div>
-                            <div class="fact-item">
-                                <span class="fact-symbol">🌱</span>
-                                <span class="fact-copy"><small>Status</small><strong>Still figuring it out</strong></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer class="site-footer">
-            <p>© 2026 AKHMEY — daily notes, random thoughts, and small stories.</p>
-        </footer>
+  <div class="portal-shell">
+    <div class="utility-bar">
+      <span>◉ AKHMEY / daily notes</span>
+      <span>Selamat datang di ruang catatan pribadi</span>
+      <nav><a href="#home">Home</a><a href="#journal">Journal</a><a href="#about">About</a></nav>
     </div>
 
-    <script src="script.js"></script>
+    <header class="portal-header" id="home">
+      <div class="service-row">
+        <a class="service" href="#journal"><b>✎</b><span>JOURNAL</span></a>
+        <a class="service" href="#journal"><b>▣</b><span>ARCHIVE</span></a>
+        <div class="portal-logo"><strong>AKHMEY!</strong><small>daily notes</small></div>
+        <a class="service" href="#about"><b>☻</b><span>ABOUT</span></a>
+        <a class="service" href="#journal"><b>☆</b><span>RANDOM</span></a>
+      </div>
+      <nav class="category-nav"><a class="active" href="#journal">All</a><a href="#journal">Life</a><a href="#journal">Tech</a><a href="#journal">Entertainment</a><a href="#journal">Thoughts</a><a href="#journal">Archive</a></nav>
+      <form class="search-box" onsubmit="return false"><input aria-label="Search" placeholder="Search this journal..."><button>🔍 Search</button></form>
+    </header>
+
+    <div class="notice-bar">★ Latest update: welcome to AKHMEY's little corner of the internet ★ &nbsp; <a href="#journal">See all entries →</a></div>
+
+    <main class="portal-grid">
+      <aside class="left-column">
+        <section class="portal-panel link-panel">
+          <h2>QUICK MENU</h2>
+          <a href="#journal">▸ Semua tulisan</a><a href="#journal">▸ Catatan harian</a><a href="#journal">▸ Teknologi</a><a href="#journal">▸ Hiburan</a><a href="#about">▸ Tentang blog</a>
+        </section>
+        <section class="portal-panel today-panel">
+          <h2>AKHMEY STATUS</h2><div class="status-dot">● ONLINE</div><p>Tempat buat nyatet apa pun yang lagi kepikiran.</p><div class="mini-rule"></div><small>Updated: 17 September 2026</small>
+        </section>
+        <section class="portal-panel link-panel"><h2>LINKS</h2><a href="#home">▸ Home</a><a href="#journal">▸ Journal</a><a href="#about">▸ About me</a><a href="https://github.com/akhmey">▸ GitHub</a></section>
+      </aside>
+
+      <section class="main-column" id="journal">
+        <div class="section-title"><h1>Latest entries</h1><a href="#journal">View archive »</a></div>
+        <div id="posts-container" class="posts-grid"><div class="loading">Loading journal...</div></div>
+      </section>
+
+      <aside class="right-column">
+        <section class="ad-box"><small>featured note</small><strong>Hal-hal kecil yang kepikiran terlalu lama.</strong><p>Random thoughts, stories, and notes from everyday life.</p><a href="#journal">Read journal →</a></section>
+        <section class="portal-panel login-panel"><h2>WELCOME BACK</h2><p>Ini bukan portal berita. Ini cuma blog kecil yang isinya bisa berubah kapan saja.</p><a class="panel-button" href="#about">Kenalan lebih jauh</a></section>
+        <section class="portal-panel facts-panel" id="about"><h2>ABOUT THIS PLACE</h2><p><b>AKHMEY</b> menulis tentang hidup, teknologi, hiburan, dan hal random yang terasa menarik.</p><div class="fact-line"><span>Format</span><b>Markdown notes</b></div><div class="fact-line"><span>Base</span><b>Indonesia</b></div></section>
+      </aside>
+    </main>
+
+    <footer class="portal-footer"><span>© 2026 AKHMEY</span><span>Built with Markdown · <a href="#home">Back to top ↑</a></span></footer>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
